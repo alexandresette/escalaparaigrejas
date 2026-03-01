@@ -757,8 +757,8 @@ var am=getSlots(ev,'m');var an=getSlots(ev,'n');
 // Morning (Dom 10h-12h)
 if(am.length){
 var mStart=new Date(ev.date+'T10:00:00');var mEnd=new Date(ev.date+'T12:00:00');
-if(now>=mStart&&now<mEnd){live={nm:ev.wd+' - Manh\u00e3 \u2022 10h',date:mStart,end:mEnd,slots:am};break}
-if(mStart>now&&!ne){ne={nm:ev.wd+' - Manh\u00e3 \u2022 10h',date:mStart,slots:am,hora:'10h'}}
+if(now>=mStart&&now<mEnd){live={nm:ev.wd.toUpperCase()+(ev.wd==='Quarta'?'-FEIRA':'')+' - Manh\u00e3 \u2022 10h',date:mStart,end:mEnd,slots:am};break}
+if(mStart>now&&!ne){ne={nm:ev.wd.toUpperCase()+(ev.wd==='Quarta'?'-FEIRA':'')+' - Manh\u00e3 \u2022 10h',date:mStart,slots:am,hora:'10h'}}
 }
 // Night (Qua 20h-22h, Dom 19h-21:15)
 if(an.length){
@@ -767,8 +767,8 @@ var nStart=new Date(ev.date+'T'+nhr);
 var nEnd;
 if(ev.wd==='Quarta'){nEnd=new Date(ev.date+'T22:00:00')}
 else{nEnd=new Date(ev.date+'T21:15:00')}
-if(now>=nStart&&now<nEnd){live={nm:ev.wd+' - Noite \u2022 '+(ev.wd==='Quarta'?'20h':'19h'),date:nStart,end:nEnd,slots:an};break}
-if(nStart>now&&!ne){ne={nm:ev.wd+' - Noite \u2022 '+(ev.wd==='Quarta'?'20h':'19h'),date:nStart,slots:an,hora:ev.wd==='Quarta'?'20h':'19h'}}
+if(now>=nStart&&now<nEnd){live={nm:ev.wd.toUpperCase()+(ev.wd==='Quarta'?'-FEIRA':'')+' - Noite \u2022 '+(ev.wd==='Quarta'?'20h':'19h'),date:nStart,end:nEnd,slots:an};break}
+if(nStart>now&&!ne){ne={nm:ev.wd.toUpperCase()+(ev.wd==='Quarta'?'-FEIRA':'')+' - Noite \u2022 '+(ev.wd==='Quarta'?'20h':'19h'),date:nStart,slots:an,hora:ev.wd==='Quarta'?'20h':'19h'}}
 }
 if(ne)break;
 }
