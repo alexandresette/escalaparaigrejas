@@ -39,9 +39,9 @@ html{scroll-behavior:smooth}
 .flw-btn-m:hover{color:#fff;border-color:rgba(0,206,201,.6);background:rgba(0,206,201,.15);box-shadow:0 0 16px rgba(0,206,201,.2)}
 .flw-btn-m{display:none!important}
 @media(max-width:640px){.tb.scrolled .flw-btn-m{display:flex!important}}
-.app-brand{display:flex;align-items:center;gap:6px;font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:#fff;text-decoration:none;padding:8px 16px;border:none;border-radius:100px;background:linear-gradient(135deg,#6c5ce7,#00cec9);transition:padding .5s ease,gap .5s ease,border-radius .5s ease,width .5s ease,box-shadow .3s ease,color .3s ease,border-color .3s ease;letter-spacing:.3px;box-shadow:0 0 20px rgba(108,92,231,.25),0 0 40px rgba(0,206,201,.1);text-transform:uppercase;white-space:nowrap;overflow:hidden;animation:abpulse 2.5s ease-in-out infinite}
+.app-brand{display:flex;align-items:center;gap:6px;font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--t1);text-decoration:none;padding:8px 16px;border:1px solid var(--brd);border-radius:100px;background:var(--card);transition:padding .5s ease,gap .5s ease,border-radius .5s ease,width .5s ease,box-shadow .3s ease,color .3s ease,border-color .3s ease,background .3s ease;letter-spacing:.3px;text-transform:uppercase;white-space:nowrap;overflow:hidden}
 @keyframes abpulse{0%,100%{box-shadow:0 0 20px rgba(108,92,231,.2),0 0 40px rgba(0,206,201,.05)}50%{box-shadow:0 0 28px rgba(108,92,231,.5),0 0 56px rgba(0,206,201,.2)}}
-.app-brand:hover{color:#fff;box-shadow:0 0 30px rgba(108,92,231,.4),0 0 60px rgba(0,206,201,.2);transform:translateY(-1px)}
+.app-brand:hover{color:#fff;background:linear-gradient(135deg,#6c5ce7,#00cec9);border-color:transparent;box-shadow:0 0 30px rgba(108,92,231,.4),0 0 60px rgba(0,206,201,.2);transform:translateY(-1px)}
 .app-brand img{width:16px;height:16px;border-radius:4px;transition:all .6s ease;flex-shrink:0}
 .app-brand-txt{display:inline-block;max-width:200px;opacity:1;transition:max-width .5s ease,opacity .3s ease .1s;overflow:hidden}
 .tb.scrolled .app-brand-txt{max-width:0;opacity:0;transition:max-width .5s ease,opacity .2s ease}
