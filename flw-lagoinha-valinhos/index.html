@@ -182,6 +182,7 @@ html{scroll-behavior:smooth}
 .vmwa svg{width:18px;height:18px;fill:var(--wa)}
 /* Devo */
 .dv{padding:20px;background:var(--bg);border:1px solid var(--brd);border-radius:var(--rs);margin-bottom:16px;text-align:center}
+.dv-img{width:100%;border-radius:12px;margin-bottom:16px;aspect-ratio:2/1;object-fit:cover;background:var(--elev);border:1px solid var(--brd)}
 .dv .dvt{font-size:15px;color:var(--t1);font-style:italic;line-height:1.7}
 .dv .dvr{font-size:12px;font-weight:700;margin-top:10px;background:var(--gw);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:1px}
 .dth{font-size:15px;color:var(--t2);line-height:1.8;margin-bottom:16px}
@@ -344,15 +345,15 @@ var PV=[
 {t:'"Ainda que eu ande pelo vale da sombra da morte, n\u00e3o temerei mal algum."',r:"Salmos 23:4"}
 ];
 var DEVOS=[
-{v:0,th:"Deus conhece cada detalhe do seu futuro. O Autor da sua hist\u00f3ria j\u00e1 escreveu o final, e \u00e9 um final de esperan\u00e7a.",pr:"Senhor, eu entrego nas Tuas m\u00e3os os meus planos. Me d\u00e1 paz para confiar. Am\u00e9m."},
-{v:1,th:"Coragem n\u00e3o \u00e9 aus\u00eancia de medo, \u00e9 a presen\u00e7a de Deus no meio dele.",pr:"Pai, me rev\u00ea de coragem. Eu escolho avan\u00e7ar contigo. Am\u00e9m."},
-{v:6,th:"A paz que Jesus oferece n\u00e3o depende das circunst\u00e2ncias. Acalma a tempestade interior.",pr:"Jesus, derrama Tua paz sobre mim agora. Tu est\u00e1s no controle. Am\u00e9m."},
-{v:8,th:"O amor de Deus \u00e9 paciente quando falhamos, bondoso quando n\u00e3o merecemos.",pr:"Senhor, me ensina a amar como Tu amas. Am\u00e9m."},
-{v:5,th:"Ansiedade \u00e9 carregar um peso que Deus nunca pediu. Ele disse: lan\u00e7a sobre mim. A ansiedade tenta nos convencer de que precisamos resolver tudo sozinhos, mas fomos criados para viver em depend\u00eancia de Deus. Quando entregamos nossas preocupa\u00e7\u00f5es a Ele, n\u00e3o estamos sendo fracos, estamos exercitando a f\u00e9 mais corajosa que existe. Hoje, solte o peso. Deus est\u00e1 te dizendo: isso \u00e9 Meu, deixa comigo.",pr:"Pai, eu reconhe\u00e7o que tenho carregado pesos que n\u00e3o me pertencem. Cada preocupa\u00e7\u00e3o, cada medo, eu lan\u00e7o tudo sobre Ti agora. Obrigado porque Tu cuidas de mim com amor perfeito. Me ensina a viver um dia de cada vez, confiando que Tu j\u00e1 est\u00e1s no meu futuro. Traz descanso ao meu cora\u00e7\u00e3o. Em nome de Jesus. Am\u00e9m."},
-{v:9,th:"Cansar faz parte. Desistir n\u00e3o. Os que esperam no Senhor encontram for\u00e7as renovadas.",pr:"Senhor, renova minhas for\u00e7as. Eu confio em Ti. Am\u00e9m."},
-{v:10,th:"N\u00e3o temas \u2014 Deus sabe que o medo \u00e9 real, mas quer que voc\u00ea saiba que Ele \u00e9 maior.",pr:"Deus, escolho confiar que Tu me fortaleces e me sustentas. Am\u00e9m."},
-{v:14,th:"Quando Ele \u00e9 prioridade, tudo o mais se encaixa.",pr:"Senhor, me ajuda a colocar-Te em primeiro lugar. Am\u00e9m."},
-{v:15,th:"Jesus n\u00e3o disse 'vou te dar mais for\u00e7a'. Ele disse 'eu vou te aliviar'.",pr:"Jesus, recebo o Teu al\u00edvio. Tira de mim o que n\u00e3o \u00e9 para eu carregar. Am\u00e9m."}
+{v:0,img:"golden light rays shining through clouds onto an open book, divine hope, cinematic warm tones, spiritual atmosphere",th:"Deus conhece cada detalhe do seu futuro. O Autor da sua hist\u00f3ria j\u00e1 escreveu o final, e \u00e9 um final de esperan\u00e7a.",pr:"Senhor, eu entrego nas Tuas m\u00e3os os meus planos. Me d\u00e1 paz para confiar. Am\u00e9m."},
+{v:1,img:"person standing at edge of cliff overlooking vast sunrise landscape, courage and faith, dramatic golden light, cinematic",th:"Coragem n\u00e3o \u00e9 aus\u00eancia de medo, \u00e9 a presen\u00e7a de Deus no meio dele.",pr:"Pai, me rev\u00ea de coragem. Eu escolho avan\u00e7ar contigo. Am\u00e9m."},
+{v:6,img:"calm lake at dawn with soft mist, still water reflecting purple sky, peaceful serenity, spiritual tranquility",th:"A paz que Jesus oferece n\u00e3o depende das circunst\u00e2ncias. Acalma a tempestade interior.",pr:"Jesus, derrama Tua paz sobre mim agora. Tu est\u00e1s no controle. Am\u00e9m."},
+{v:8,img:"two hands gently holding a glowing warm light, compassion and love, soft bokeh background, tender spiritual moment",th:"O amor de Deus \u00e9 paciente quando falhamos, bondoso quando n\u00e3o merecemos.",pr:"Senhor, me ensina a amar como Tu amas. Am\u00e9m."},
+{v:5,img:"person releasing glowing butterflies into a sunset sky, letting go of burdens, freedom and peace, ethereal spiritual art",th:"Ansiedade \u00e9 carregar um peso que Deus nunca pediu. Ele disse: lan\u00e7a sobre mim. A ansiedade tenta nos convencer de que precisamos resolver tudo sozinhos, mas fomos criados para viver em depend\u00eancia de Deus. Quando entregamos nossas preocupa\u00e7\u00f5es a Ele, n\u00e3o estamos sendo fracos, estamos exercitando a f\u00e9 mais corajosa que existe. Hoje, solte o peso. Deus est\u00e1 te dizendo: isso \u00e9 Meu, deixa comigo.",pr:"Pai, eu reconhe\u00e7o que tenho carregado pesos que n\u00e3o me pertencem. Cada preocupa\u00e7\u00e3o, cada medo, eu lan\u00e7o tudo sobre Ti agora. Obrigado porque Tu cuidas de mim com amor perfeito. Me ensina a viver um dia de cada vez, confiando que Tu j\u00e1 est\u00e1s no meu futuro. Traz descanso ao meu cora\u00e7\u00e3o. Em nome de Jesus. Am\u00e9m."},
+{v:9,img:"eagle soaring above mountain peaks at golden hour, renewed strength, majestic and powerful, cinematic aerial view",th:"Cansar faz parte. Desistir n\u00e3o. Os que esperam no Senhor encontram for\u00e7as renovadas.",pr:"Senhor, renova minhas for\u00e7as. Eu confio em Ti. Am\u00e9m."},
+{v:10,img:"lighthouse beam cutting through dark stormy night, guiding light, hope in darkness, dramatic spiritual atmosphere",th:"N\u00e3o temas \u2014 Deus sabe que o medo \u00e9 real, mas quer que voc\u00ea saiba que Ele \u00e9 maior.",pr:"Deus, escolho confiar que Tu me fortaleces e me sustentas. Am\u00e9m."},
+{v:14,img:"single tree with golden leaves on a hilltop under starry sky, divine priority, peaceful solitude, spiritual minimalism",th:"Quando Ele \u00e9 prioridade, tudo o mais se encaixa.",pr:"Senhor, me ajuda a colocar-Te em primeiro lugar. Am\u00e9m."},
+{v:15,img:"person resting under a large ancient tree with warm sunlight filtering through leaves, divine rest and relief, serene",th:"Jesus n\u00e3o disse 'vou te dar mais for\u00e7a'. Ele disse 'eu vou te aliviar'.",pr:"Jesus, recebo o Teu al\u00edvio. Tira de mim o que n\u00e3o \u00e9 para eu carregar. Am\u00e9m."}
 ];
 var URL="https://escalaparaigrejas.com/flw-lagoinha-valinhos";
 var SD={"2026-03":{
@@ -535,7 +536,10 @@ function openDevo(){
 var d=dayIdx(DEVOS);var v=PV[d.v];
 var today=new Date().toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
 document.getElementById('dvDt').textContent=today;
-var h='<div class="dv"><div class="dvt">'+v.t+'</div><div class="dvr">'+v.r+'</div></div>';
+var seed=new Date().getFullYear()*10000+new Date().getMonth()*100+new Date().getDate();
+var imgUrl='https://image.pollinations.ai/prompt/'+encodeURIComponent(d.img)+'?width=800&height=400&seed='+seed+'&nologo=true';
+var h='<img class="dv-img" src="'+imgUrl+'" alt="Devocional">';
+h+='<div class="dv"><div class="dvt">'+v.t+'</div><div class="dvr">'+v.r+'</div></div>';
 h+='<div class="dth">'+d.th+'</div>';
 h+='<div class="dpr"><div class="dpl">Ora\u00e7\u00e3o</div><div class="dpt">'+d.pr+'</div></div>';
 var msg=v.t+'\n\n'+v.r+'\n\n'+d.th+'\n\n'+d.pr+'\n\n- Minist\u00e9rio FLW - Lagoinha Valinhos';
