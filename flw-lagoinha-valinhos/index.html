@@ -619,7 +619,7 @@ document.getElementById('dMs').textContent=ds;
 var h='';
 function rp(label,slots,horario){if(!slots||!slots.length)return '';var r='<div class="mpl">'+label+'</div>';
 slots.forEach(function(s){var vol=Z[s.p]||{};var dc=getTypeColor(s.t);
-var wu='https://wa.me/'+(vol.p||'')+'?text='+encodeURIComponent('Oi '+s.p+'!\n\nVoc\u00ea est\u00e1 '+(vol.g==='m'?'escalada':'escalado')+':\n\n'+ds+'\nHor\u00e1rio: '+horario+'\nFun\u00e7\u00e3o: '+s.r+'\n\nConfira a escala completa em:\n'+URL+'\n\nQualquer impedimento, avise com anteced\u00eancia!');
+var wu='https://wa.me/'+(vol.p||'')+'?text='+encodeURIComponent('Gra\u00e7a e paz '+s.p+'!\n\nVoc\u00ea est\u00e1 '+(vol.g==='m'?'escalada':'escalado')+':\n\n'+ds+'\nHor\u00e1rio: '+horario+'\nFun\u00e7\u00e3o: '+s.r+'\n\nConfira a escala completa em:\n'+URL+'\n\nQualquer impedimento, avise com anteced\u00eancia!');
 r+='<div class="mp"><div class="mpa">'+(vol.i?'<img src="'+vol.i+'">':'')+'</div><div style="flex:1"><div class="mpn">'+s.p+'</div><div class="mpr"><span class="mpd" style="background:'+dc+'"></span>'+s.r+'</div></div><div class="mwc"><a class="mpw" href="'+wu+'" target="_blank">'+W+'</a><div class="mwl">Enviar lembrete</div></div></div>'});
 return r;}
 var mLabel=ev.wd==='Domingo'?'Manh\u00e3 \u2022 10h':'Manh\u00e3';var nLabel=ev.wd==='Quarta'?'Noite \u2022 20h':'Noite \u2022 19h';
@@ -649,7 +649,7 @@ h+='<div class="vme"><div class="vmd">'+s.ds+'</div><div class="vmr">'+s.per+' \
 });h+='</div>';}
 h+='<div class="mv"><div class="mt">'+pv.t+'</div><div class="mr">'+pv.r+'</div></div>';
 if(vol.p){
-var waMsg='Oi '+name+'!\n\nSua escala de '+data.month+' '+data.year+':\n\n';
+var waMsg='Gra\u00e7a e paz '+name+'!\n\nSua escala de '+data.month+' '+data.year+':\n\n';
 sched.forEach(function(s){waMsg+=s.ds+' | '+s.per+' | '+s.r+'\n'});
 waMsg+='\nConfira a escala completa em:\n'+URL;
 h+='<a class="vmwa" href="https://wa.me/'+vol.p+'?text='+encodeURIComponent(waMsg)+'" target="_blank">'+W+' Enviar escala</a>';}
@@ -800,7 +800,7 @@ var ph='';ne.slots.forEach(function(s){var vol=Z[s.p]||{};
 ph+='<div class="npe">'+(vol.i?'<img src="'+vol.i+'">':'')+'<div><div class="npn">'+s.p+'</div><div class="npr">'+s.r+'</div></div></div>';
 });document.getElementById('nP').innerHTML=ph;
 var wh='';ne.slots.forEach(function(s,idx){var vol=Z[s.p]||{};
-var msg='Oi '+s.p+'!\n\nVoc\u00ea est\u00e1 '+(vol.g==='m'?'escalada':'escalado')+':\n\n'+ds+'\nHor\u00e1rio: '+ne.hora+'\nFun\u00e7\u00e3o: '+s.r+'\n\nConfira a escala completa em:\n'+URL+'\n\nQualquer impedimento, avise com anteced\u00eancia!';
+var msg='Gra\u00e7a e paz '+s.p+'!\n\nVoc\u00ea est\u00e1 '+(vol.g==='m'?'escalada':'escalado')+':\n\n'+ds+'\nHor\u00e1rio: '+ne.hora+'\nFun\u00e7\u00e3o: '+s.r+'\n\nConfira a escala completa em:\n'+URL+'\n\nQualquer impedimento, avise com anteced\u00eancia!';
 var u='https://wa.me/'+(vol.p||'')+'?text='+encodeURIComponent(msg);
 var tc={'slide':'108,92,231','ilum':'0,206,201','som':'248,183,57','foto':'162,155,254','open':'0,184,148','consol':'214,48,49'};
 var rgb=tc[s.t]||'108,92,231';
