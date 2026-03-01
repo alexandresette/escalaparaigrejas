@@ -222,6 +222,8 @@ html{scroll-behavior:smooth}
 .dv-img{width:100%;border-radius:12px;margin-bottom:16px;aspect-ratio:2/1;object-fit:cover;background:linear-gradient(135deg,rgba(108,92,231,.2),rgba(0,206,201,.15),rgba(253,121,168,.1));border:1px solid var(--brd)}
 .dsh-dl{display:flex;align-items:center;gap:8px;justify-content:center;width:100%;padding:12px;border-radius:12px;border:1px solid rgba(108,92,231,.3);background:linear-gradient(135deg,rgba(108,92,231,.1),rgba(0,206,201,.08));color:var(--a1);font-size:13px;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;transition:all .3s;margin-top:8px;text-decoration:none}
 .dsh-dl:hover{border-color:rgba(108,92,231,.6);box-shadow:0 0 20px rgba(108,92,231,.15);color:#fff}
+.pdf-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:12px;border:1px solid rgba(108,92,231,.3);background:linear-gradient(135deg,rgba(108,92,231,.1),rgba(0,206,201,.08));color:var(--a1);font-size:13px;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;transition:all .3s}
+.pdf-btn:hover{border-color:rgba(108,92,231,.6);box-shadow:0 0 20px rgba(108,92,231,.15);color:#fff;transform:translateY(-1px)}
 .dsh-dl svg{width:16px;height:16px;fill:currentColor}
 .dv .dvt{font-size:15px;color:var(--t1);font-style:italic;line-height:1.7}
 .dv .dvr{font-size:12px;font-weight:700;margin-top:10px;background:var(--gw);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:1px}
@@ -330,6 +332,7 @@ Lagoinha Valinhos<a href="https://www.instagram.com/lagoinhavalinhos/?hl=en" tar
 <div class="li"><div class="d" style="background:#00b894"></div>Open</div>
 <div class="li"><div class="d" style="background:#e17055"></div>Consolida&#231;&#227;o</div>
 </div>
+<div style="text-align:center;margin:16px 0"><button class="pdf-btn" onclick="dlPDF()"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>Baixar escala em PDF</button></div>
 <div class="sts" id="resumo"><div class="st">Resumo de escala&#231;&#245;es<div class="ln"></div><div class="stsub">Toque em um volunt&#225;rio para ver sua escala completa</div></div><div class="stg" id="stG"></div></div>
 <div class="os"><div class="st">Servindo em outros minist&#233;rios<div class="ln"></div></div><div class="og" id="oG"></div></div>
 <div style="text-align:center;padding:40px 0 4px;font-size:11px;color:var(--t3);letter-spacing:.5px">Desenvolvido por Alexandre Sette</div><div style="text-align:center;padding:0 0 10px;font-size:11px;color:var(--t3);letter-spacing:.5px;font-style:italic">Para glória de Deus</div>
@@ -880,4 +883,80 @@ window.addEventListener('scroll',function(){
 if(window.scrollY>scrollThreshold){tb.classList.add('scrolled')}
 else{tb.classList.remove('scrolled')}
 },{passive:true});
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+function dlPDF(){
+var btn=document.querySelector('.pdf-btn');
+btn.textContent='Gerando PDF...';btn.disabled=true;
+var data=gd();
+var {jsPDF}=window.jspdf;
+var doc=new jsPDF({orientation:'portrait',unit:'mm',format:'a4'});
+var W=210,H=297,mx=12,cw=W-mx*2;
+var y=15;
+// Colors
+var colors={slide:[108,92,231],ilum:[0,206,201],som:[248,183,57],foto:[162,155,254],open:[0,184,148],consol:[225,112,85]};
+// Header
+doc.setFillColor(8,9,13);doc.rect(0,0,W,H,'F');
+// Title gradient bar
+doc.setFillColor(108,92,231);doc.rect(mx,y,cw/2,3,'F');
+doc.setFillColor(0,206,201);doc.rect(mx+cw/2,y,cw/2,3,'F');
+y+=8;
+doc.setTextColor(232,234,240);doc.setFontSize(18);doc.setFont('helvetica','bold');
+doc.text('Escala FLW - Lagoinha Valinhos',mx,y);y+=6;
+doc.setFontSize(10);doc.setTextColor(139,144,168);
+doc.text(data.month+' '+data.year+(fCat?' | '+fCat:'')+(fVol?' | '+fVol:''),mx,y);y+=8;
+// Table header
+var colW=[22,(cw-22)/2,(cw-22)/2];
+doc.setFillColor(20,22,40);doc.rect(mx,y,cw,8,'F');
+doc.setFontSize(8);doc.setFont('helvetica','bold');doc.setTextColor(200,200,220);
+doc.text('DIA',mx+2,y+5.5);doc.text('MANH\u00c3',mx+colW[0]+2,y+5.5);doc.text('NOITE',mx+colW[0]+colW[1]+2,y+5.5);
+y+=9;
+// Rows
+data.events.forEach(function(ev){
+var mSlots=filterSlots(getSlots(ev,'m'));var nSlots=filterSlots(getSlots(ev,'n'));
+if(!mSlots.length&&!nSlots.length)return;
+var maxLines=Math.max(mSlots.length,nSlots.length,1);
+var rowH=maxLines*5+4;
+if(y+rowH>H-15){doc.addPage();doc.setFillColor(8,9,13);doc.rect(0,0,W,H,'F');y=15;
+doc.setFillColor(20,22,40);doc.rect(mx,y,cw,8,'F');
+doc.setFontSize(8);doc.setFont('helvetica','bold');doc.setTextColor(200,200,220);
+doc.text('DIA',mx+2,y+5.5);doc.text('MANH\u00c3',mx+colW[0]+2,y+5.5);doc.text('NOITE',mx+colW[0]+colW[1]+2,y+5.5);
+y+=9;}
+var isQ=ev.wd==='Quarta';
+doc.setFillColor(isQ?18:15,isQ?20:17,isQ?38:30);doc.rect(mx,y,cw,rowH,'F');
+// Day cell
+var dn=new Date(ev.date+'T12:00:00').getDate().toString().padStart(2,'0');
+doc.setFontSize(9);doc.setFont('helvetica','bold');
+doc.setTextColor(isQ?0:108,isQ?206:92,isQ?201:231);
+doc.text(ev.wd.substring(0,3).toUpperCase(),mx+2,y+5);
+doc.setFontSize(7);doc.setTextColor(139,144,168);
+doc.text('('+dn+'/MAR)',mx+2,y+9);
+// Slots renderer
+function drawSlots(slots,xOff){
+slots.forEach(function(s,j){
+var sy=y+2+j*5;var c=colors[s.t]||[0,206,201];
+doc.setFillColor(c[0],c[1],c[2]);doc.circle(xOff+2,sy+1.8,1,'F');
+doc.setFontSize(6);doc.setFont('helvetica','bold');doc.setTextColor(c[0],c[1],c[2]);
+doc.text(s.r+':',xOff+5,sy+2.5);
+doc.setFont('helvetica','normal');doc.setTextColor(200,200,220);
+doc.text(s.p,xOff+5+doc.getTextWidth(s.r+': '),sy+2.5);
+})}
+drawSlots(mSlots,mx+colW[0]);
+drawSlots(nSlots,mx+colW[0]+colW[1]);
+// Row border
+doc.setDrawColor(30,34,53);doc.line(mx,y+rowH,mx+cw,y+rowH);
+y+=rowH;
+});
+// Footer
+y+=6;if(y>H-20){doc.addPage();doc.setFillColor(8,9,13);doc.rect(0,0,W,H,'F');y=15}
+doc.setFontSize(8);doc.setTextColor(85,90,114);
+doc.text('escalaparaigrejas.com',mx,y);
+doc.text('Para gl\u00f3ria de Deus',W-mx,y,{align:'right'});
+// Save
+var fname='escala-flw-mar-2026';
+if(fCat)fname+='-'+fCat.toLowerCase().replace(/[\/ ]/g,'-');
+if(fVol)fname+='-'+fVol.toLowerCase().replace(/ /g,'-');
+doc.save(fname+'.pdf');
+btn.innerHTML='<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>Baixar escala em PDF';btn.disabled=false;
+}
 </script></body></html>
