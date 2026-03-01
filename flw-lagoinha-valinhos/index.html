@@ -39,8 +39,9 @@ html{scroll-behavior:smooth}
 .flw-btn-m:hover{color:#fff;border-color:rgba(0,206,201,.6);background:rgba(0,206,201,.15);box-shadow:0 0 16px rgba(0,206,201,.2)}
 .flw-btn-m{display:none!important}
 @media(max-width:640px){.tb.scrolled .flw-btn-m{display:flex!important}}
-.app-brand{display:flex;align-items:center;gap:6px;font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:#a29bfe;text-decoration:none;padding:8px 16px;border:1px solid rgba(108,92,231,.4);border-radius:100px;background:linear-gradient(135deg,rgba(108,92,231,.12),rgba(0,206,201,.08));transition:padding .5s ease,gap .5s ease,border-radius .5s ease,width .5s ease,box-shadow .3s ease,color .3s ease,border-color .3s ease;letter-spacing:.3px;box-shadow:0 0 16px rgba(108,92,231,.12);text-transform:uppercase;white-space:nowrap;overflow:hidden}
-.app-brand:hover{color:#fff;border-color:rgba(108,92,231,.7);box-shadow:0 0 24px rgba(108,92,231,.25);transform:translateY(-1px)}
+.app-brand{display:flex;align-items:center;gap:6px;font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:#fff;text-decoration:none;padding:8px 16px;border:none;border-radius:100px;background:linear-gradient(135deg,#6c5ce7,#00cec9);transition:padding .5s ease,gap .5s ease,border-radius .5s ease,width .5s ease,box-shadow .3s ease,color .3s ease,border-color .3s ease;letter-spacing:.3px;box-shadow:0 0 20px rgba(108,92,231,.25),0 0 40px rgba(0,206,201,.1);text-transform:uppercase;white-space:nowrap;overflow:hidden;animation:abpulse 2.5s ease-in-out infinite}
+@keyframes abpulse{0%,100%{box-shadow:0 0 20px rgba(108,92,231,.2),0 0 40px rgba(0,206,201,.05)}50%{box-shadow:0 0 28px rgba(108,92,231,.5),0 0 56px rgba(0,206,201,.2)}}
+.app-brand:hover{color:#fff;box-shadow:0 0 30px rgba(108,92,231,.4),0 0 60px rgba(0,206,201,.2);transform:translateY(-1px)}
 .app-brand img{width:16px;height:16px;border-radius:4px;transition:all .6s ease;flex-shrink:0}
 .app-brand-txt{display:inline-block;max-width:200px;opacity:1;transition:max-width .5s ease,opacity .3s ease .1s;overflow:hidden}
 .tb.scrolled .app-brand-txt{max-width:0;opacity:0;transition:max-width .5s ease,opacity .2s ease}
@@ -139,6 +140,9 @@ html{scroll-behavior:smooth}
 .stg{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:8px;max-width:100%;overflow:hidden}
 .stc{background:var(--card);border:1px solid var(--brd);border-radius:var(--rs);padding:16px;display:flex;align-items:center;gap:14px;transition:all .2s;cursor:pointer}
 .stc:hover{border-color:var(--brd2);background:var(--elev)}
+.cat-slide .stc:hover{border-color:rgba(108,92,231,.5);background:linear-gradient(135deg,rgba(108,92,231,.15),rgba(0,206,201,.1));box-shadow:0 4px 20px rgba(108,92,231,.2)}
+.cat-som .stc:hover{border-color:rgba(248,183,57,.5);background:linear-gradient(135deg,rgba(248,183,57,.15),rgba(225,112,85,.1));box-shadow:0 4px 20px rgba(248,183,57,.2)}
+.cat-foto .stc:hover{border-color:rgba(162,155,254,.5);background:linear-gradient(135deg,rgba(162,155,254,.15),rgba(253,121,168,.1));box-shadow:0 4px 20px rgba(162,155,254,.2)}
 .sa{width:44px;height:44px;border-radius:50%;border:2px solid var(--brd2);overflow:hidden;flex-shrink:0}
 .sa img{width:100%;height:100%;object-fit:cover}
 .si{flex:1}.sn{font-weight:600;font-size:14px}
