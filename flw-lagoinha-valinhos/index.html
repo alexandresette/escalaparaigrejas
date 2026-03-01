@@ -96,6 +96,7 @@ html{scroll-behavior:smooth}
 .npe img{width:28px;height:28px;border-radius:50%;object-fit:cover}
 .npn{font-size:12px;font-weight:600}
 .npr{font-size:9px;color:var(--t3);letter-spacing:.5px;text-transform:uppercase}
+.npe-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-left:auto}
 .cdt{display:flex;gap:12px}
 .tmb{background:var(--elev);border:1px solid var(--brd);border-radius:var(--rs);padding:12px 16px;text-align:center;min-width:70px}
 .tmb .n{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;background:var(--gm);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
@@ -783,7 +784,7 @@ document.getElementById('neN').textContent=live.nm;
 document.getElementById('neD').textContent='Culto em andamento';
 document.getElementById('cdT').style.display='none';
 var ph='';live.slots.forEach(function(s){var vol=Z[s.p]||{};
-ph+='<div class="npe">'+(vol.i?'<img src="'+vol.i+'">':'')+'<div><div class="npn">'+s.p+'</div><div class="npr">'+s.r+'</div></div></div>';
+ph+='<div class="npe">'+(vol.i?'<img src="'+vol.i+'">':'')+'<div><div class="npn">'+s.p+'</div><div class="npr">'+s.r+'</div></div><div class="npe-dot" style="background:'+getTypeColor(s.t)+'"></div></div>';
 });document.getElementById('nP').innerHTML=ph;
 document.getElementById('waA').innerHTML='';
 return;
@@ -797,7 +798,7 @@ document.getElementById('neN').textContent=ne.nm;
 var ds=ne.date.toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'long',hour:'2-digit',minute:'2-digit'});
 document.getElementById('neD').textContent=ds;
 var ph='';ne.slots.forEach(function(s){var vol=Z[s.p]||{};
-ph+='<div class="npe">'+(vol.i?'<img src="'+vol.i+'">':'')+'<div><div class="npn">'+s.p+'</div><div class="npr">'+s.r+'</div></div></div>';
+ph+='<div class="npe">'+(vol.i?'<img src="'+vol.i+'">':'')+'<div><div class="npn">'+s.p+'</div><div class="npr">'+s.r+'</div></div><div class="npe-dot" style="background:'+getTypeColor(s.t)+'"></div></div>';
 });document.getElementById('nP').innerHTML=ph;
 var wh='';ne.slots.forEach(function(s,idx){var vol=Z[s.p]||{};
 var msg='Gra\u00e7a e paz '+s.p+'!\n\nVoc\u00ea est\u00e1 '+(vol.g==='m'?'escalada':'escalado')+':\n\n'+ds+'\nHor\u00e1rio: '+ne.hora+'\nFun\u00e7\u00e3o: '+s.r+'\n\nConfira a escala completa em:\n'+URL+'\n\nQualquer impedimento, avise com anteced\u00eancia!';
