@@ -544,8 +544,8 @@ var d=dayIdx(DEVOS);var v=PV[d.v];
 var today=new Date().toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
 document.getElementById('dvDt').textContent=today;
 var seed=new Date().getFullYear()*10000+new Date().getMonth()*100+new Date().getDate();
-var imgUrl='https://gen.pollinations.ai/image/'+encodeURIComponent(d.img)+'?model=flux&width=800&height=400&seed='+seed+'&nologo=true&key=pk_0k8FGte0IIKC10JN';
-var h='<img class="dv-img" src="'+imgUrl+'" alt="Devocional" onerror="this.style.display=\'none\'">';
+var imgUrl='https://gen.pollinations.ai/image/'+encodeURIComponent(d.img)+'?model=flux&width=800&height=400&seed='+seed+'&nologo=true';
+var h='<img class="dv-img" id="dvImg" alt="Devocional">';
 h+='<div class="dv"><div class="dvt">'+v.t+'</div><div class="dvr">'+v.r+'</div></div>';
 h+='<div class="dth">'+d.th+'</div>';
 h+='<div class="dpr"><div class="dpl">Ora\u00e7\u00e3o</div><div class="dpt">'+d.pr+'</div></div>';
@@ -553,6 +553,9 @@ var msg=v.t+'\n\n'+v.r+'\n\n'+d.th+'\n\n'+d.pr+'\n\n- Minist\u00e9rio FLW - Lago
 h+='<a class="dsh" href="https://wa.me/?text='+encodeURIComponent(msg)+'" target="_blank">'+W+' Enviar devocional pelo WhatsApp</a>';
 document.getElementById('dvC').innerHTML=h;
 document.getElementById('dvM').classList.add('a');
+fetch(imgUrl,{headers:{'Authorization':'Bearer pk_0k8FGte0IIKC10JN'}}).then(function(r){return r.blob()}).then(function(b){
+var el=document.getElementById('dvImg');if(el)el.src=URL.createObjectURL(b);
+}).catch(function(){var el=document.getElementById('dvImg');if(el)el.style.display='none'});
 }
 function cdv(){document.getElementById('dvM').classList.remove('a')}
 document.addEventListener('keydown',function(e){if(e.key==='Escape'){cdm();cvm();cdv()}});
