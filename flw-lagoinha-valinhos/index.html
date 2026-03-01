@@ -605,6 +605,7 @@ h+='<a class="dsh" href="https://wa.me/?text='+encodeURIComponent(msg)+'" target
 h+='<button class="dsh-dl" onclick="dlDevo()"><svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>Baixar imagem do devocional</button>';
 document.getElementById('dvC').innerHTML=h;
 document.getElementById('dvM').classList.add('a');
+var md=document.getElementById('dvM').querySelector('.md');if(md)md.scrollTop=0;
 window._devoData={img:d.img,verse:v.t,ref:v.r,th:d.th};
 }
 function dlDevo(){
