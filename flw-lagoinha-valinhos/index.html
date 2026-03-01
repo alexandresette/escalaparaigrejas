@@ -17,10 +17,9 @@ html{scroll-behavior:smooth}
 .tb{display:flex;justify-content:space-between;align-items:center;animation:fd .4s ease;position:fixed;top:0;left:0;right:0;z-index:50;padding:12px 20px;transition:all .6s ease;max-width:900px;margin:0 auto}
 .tb-spacer{height:56px}
 .tb.scrolled{background:rgba(13,17,30,.65);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid rgba(108,92,231,.12);padding:10px 20px;border-radius:0 0 16px 16px;box-shadow:0 8px 32px rgba(0,0,0,.25)}
-.tb.scrolled .app-brand{padding:8px;gap:0;font-size:0;border-radius:50%;width:36px;height:36px;justify-content:center}
+.tb.scrolled .app-brand{padding:8px;gap:0;border-radius:50%;width:36px;height:36px;justify-content:center}
 .tb.scrolled .app-brand img{width:18px;height:18px}
-.tb.scrolled .db{padding:8px;gap:0;font-size:0;border-radius:50%;width:36px;height:36px;justify-content:center}
-.tb.scrolled .db span{display:none}
+.tb.scrolled .db{padding:8px;gap:0;border-radius:50%;width:36px;height:36px;justify-content:center}
 .tb.scrolled .db svg{width:18px;height:18px}
 .flw-nav{display:none}
 .tb.scrolled .nav-links .flw-nav{display:inline;color:var(--a2)!important;font-weight:700!important;border:1px solid rgba(0,206,201,.3);background:rgba(0,206,201,.08)}
@@ -28,9 +27,11 @@ html{scroll-behavior:smooth}
 .flw-btn-m:hover{color:#fff;border-color:rgba(0,206,201,.6);background:rgba(0,206,201,.15);box-shadow:0 0 16px rgba(0,206,201,.2)}
 .flw-btn-m{display:none!important}
 @media(max-width:640px){.tb.scrolled .flw-btn-m{display:flex!important}}
-.app-brand{display:flex;align-items:center;gap:6px;font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#a29bfe;text-decoration:none;padding:8px 16px;border:1px solid rgba(108,92,231,.4);border-radius:100px;background:linear-gradient(135deg,rgba(108,92,231,.12),rgba(0,206,201,.08));transition:all .4s cubic-bezier(.4,0,.2,1);letter-spacing:.3px;box-shadow:0 0 16px rgba(108,92,231,.12);text-transform:uppercase;white-space:nowrap;overflow:hidden}
+.app-brand{display:flex;align-items:center;gap:6px;font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#a29bfe;text-decoration:none;padding:8px 16px;border:1px solid rgba(108,92,231,.4);border-radius:100px;background:linear-gradient(135deg,rgba(108,92,231,.12),rgba(0,206,201,.08));transition:all .6s ease,width .6s ease,padding .6s ease,border-radius .6s ease,gap .6s ease;letter-spacing:.3px;box-shadow:0 0 16px rgba(108,92,231,.12);text-transform:uppercase;white-space:nowrap;overflow:hidden}
 .app-brand:hover{color:#fff;border-color:rgba(108,92,231,.7);box-shadow:0 0 24px rgba(108,92,231,.25);transform:translateY(-1px)}
-.app-brand img{width:16px;height:16px;border-radius:4px;transition:all .4s cubic-bezier(.4,0,.2,1);flex-shrink:0}
+.app-brand img{width:16px;height:16px;border-radius:4px;transition:all .6s ease;flex-shrink:0}
+.app-brand-txt{display:inline-block;max-width:200px;opacity:1;transition:max-width .6s ease,opacity .4s ease;overflow:hidden}
+.tb.scrolled .app-brand-txt{max-width:0;opacity:0}
 .nav-links{display:flex;gap:4px;align-items:center}
 .nav-links a{font-size:13px;font-weight:600;color:var(--t3);text-decoration:none;padding:6px 12px;border-radius:100px;transition:all .2s;letter-spacing:.3px}
 .nav-links a:hover{color:var(--t1);background:var(--elev)}
@@ -43,7 +44,9 @@ html{scroll-behavior:smooth}
 .lb a:first-of-type{border-color:rgba(225,48,108,.2);background:rgba(225,48,108,.05)}
 .lb a:last-of-type{border-color:rgba(255,0,0,.2);background:rgba(255,0,0,.05)}
 .today-date{text-align:center;font-size:13px;color:var(--t2);margin-top:8px;font-weight:400;letter-spacing:.3px;animation:fd .6s ease .15s both}
-.db{display:flex;align-items:center;gap:6px;background:linear-gradient(135deg,rgba(253,121,168,.15),rgba(248,183,57,.15));border:1px solid rgba(253,121,168,.4);padding:8px 16px;border-radius:100px;font-size:13px;font-weight:700;color:#fd79a8;cursor:pointer;transition:all .4s cubic-bezier(.4,0,.2,1);font-family:'Syne',sans-serif;box-shadow:0 0 20px rgba(253,121,168,.15),0 0 40px rgba(253,121,168,.05);position:relative;overflow:hidden;animation:dbpulse 2.5s ease-in-out infinite;white-space:nowrap;text-transform:uppercase;letter-spacing:.3px}
+.db{display:flex;align-items:center;gap:6px;background:linear-gradient(135deg,rgba(253,121,168,.15),rgba(248,183,57,.15));border:1px solid rgba(253,121,168,.4);padding:8px 16px;border-radius:100px;font-size:13px;font-weight:700;color:#fd79a8;cursor:pointer;transition:all .6s ease,width .6s ease,padding .6s ease,border-radius .6s ease,gap .6s ease;font-family:'Syne',sans-serif;box-shadow:0 0 20px rgba(253,121,168,.15),0 0 40px rgba(253,121,168,.05);position:relative;overflow:hidden;animation:dbpulse 2.5s ease-in-out infinite;white-space:nowrap;text-transform:uppercase;letter-spacing:.3px}
+.db span{display:inline-block;max-width:150px;opacity:1;transition:max-width .6s ease,opacity .4s ease;overflow:hidden}
+.tb.scrolled .db span{max-width:0;opacity:0}
 @keyframes dbpulse{0%,100%{box-shadow:0 0 20px rgba(253,121,168,.15),0 0 40px rgba(253,121,168,.05)}50%{box-shadow:0 0 28px rgba(253,121,168,.5),0 0 56px rgba(253,121,168,.2)}}
 .db::before{content:'';position:absolute;inset:-1px;border-radius:100px;background:var(--gw);opacity:0;transition:opacity .3s;z-index:-1}
 .db:hover{color:#fff;border-color:transparent;box-shadow:0 0 30px rgba(253,121,168,.3);transform:translateY(-1px)}
@@ -245,7 +248,9 @@ html{scroll-behavior:smooth}
 .sn{font-size:11px}.sl{font-size:8px}
 .stc{padding:10px;gap:8px;flex-wrap:wrap}
 .sct{font-size:18px}
-.db span{display:none}
+.db span{max-width:0;opacity:0}
+.app-brand-txt{max-width:0;opacity:0}
+.app-brand{padding:8px;gap:0;border-radius:50%;width:36px;height:36px;justify-content:center}
 .nep{gap:6px}.npe{padding:4px 8px}.npe img{width:22px;height:22px}.npn{font-size:10px}
 .ss,.sts,.os,.cc,.lg{max-width:100vw;overflow-x:hidden}
 .nav-links{display:none}
@@ -253,7 +258,7 @@ html{scroll-behavior:smooth}
 ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--brd2);border-radius:3px}
 </style></head><body>
 <div class="amb"><div class="o"></div><div class="o"></div><div class="o"></div></div>
-<div class="tb"><a href="/" class="app-brand"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAACd0lEQVR4nO1bsU7DMBA9R8yljIxIHSv+gYWylQExID6BL2BkZ0EMfAATG0hs8BEwgQAhJpBYQAyoQsoxVKmSNrV97tk9O31j69xdXs53fo6jwICD/XfTENE4PV/V/r9kMpArZAtGIswEZCHCmB8sCGh4BqA+A6Swo1wvdKkBUm66jHJMJDKoNUDizY8DgUCCxRTAwmhMKOI1EmGTAbHdfBnGbDARgAl0AS0J5ingXF/jgI4ABEhmHTA1C6YRMLrrhFaCtSTYdoFkYbEQChHG/FBHQOWRJ1IDCkxMg1m1QAV7myuws7FMjqoOD28DODzzvxfBKoc5WyYSfbuCVQ4j5+aJwiDTj7UIcoaLRN+u4G2DzAGHaMHBasDN3Q8cX37aGwMASKkGoJLZUlnFkGmsRGHFnAH6/6LMAK4aMCTA3lYoMHcB3VgUKayCZUCv24Jet2Vta+vkBX7/cnvnjmB9Ncb5fHOFQV7LsYohVi2Q0Xy7QqwWyDMpWoDyFBgzIM+EqEGuKXD9+A1Htx/2xgCELIWZiiASbYVCuA2RWBdCbGKIaCsUWGuAtgiqMG2NCt4aoNMCEGZhQ8VCDJkGUASMrgb0O23od9rWtgAAtq+e4elrQLqGCrHb4oVv31kTbEPEBUMC/NYN8ecDfPsXK4YK374zoI7fise1i3uvAfjG6+76+E/Ul6PyejcnFucDTAMkrt85wasFIkQdAQrSPCQF4HJIqvFToKlFcDQNEmqDpIOSxQWYSA1wPyvc9BqgUEV9XB5gxuPykGdYaYuRgeWDibKhWIhg/2SmbFg6CV4/mhp3IIWMoJ/NsTiWgoUYMg1o+jogNTU4gX/Hu+1tBNLoEwAAAABJRU5ErkJggg==" alt="E">Escala para Igrejas</a><div class="nav-links"><a href="#" class="flw-nav" onclick="event.preventDefault();window.scrollTo({top:0,behavior:'smooth'})">FLW</a><a href="#prox">Pr&#243;ximo culto</a><a href="#escala">Calend&#225;rio</a><a href="#resumo">Escalas</a></div><a class="flw-btn-m" onclick="window.scrollTo({top:0,behavior:'smooth'})">FLW</a><button class="db" onclick="openDevo()"><svg viewBox="0 0 24 24"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM9 4h2v5l-1-.75L9 9V4zm9 16H6V4h1v9l3-2.25L13 13V4h5v16z"/></svg><span>Devocional</span></button></div>
+<div class="tb"><a href="/" class="app-brand"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAACd0lEQVR4nO1bsU7DMBA9R8yljIxIHSv+gYWylQExID6BL2BkZ0EMfAATG0hs8BEwgQAhJpBYQAyoQsoxVKmSNrV97tk9O31j69xdXs53fo6jwICD/XfTENE4PV/V/r9kMpArZAtGIswEZCHCmB8sCGh4BqA+A6Swo1wvdKkBUm66jHJMJDKoNUDizY8DgUCCxRTAwmhMKOI1EmGTAbHdfBnGbDARgAl0AS0J5ingXF/jgI4ABEhmHTA1C6YRMLrrhFaCtSTYdoFkYbEQChHG/FBHQOWRJ1IDCkxMg1m1QAV7myuws7FMjqoOD28DODzzvxfBKoc5WyYSfbuCVQ4j5+aJwiDTj7UIcoaLRN+u4G2DzAGHaMHBasDN3Q8cX37aGwMASKkGoJLZUlnFkGmsRGHFnAH6/6LMAK4aMCTA3lYoMHcB3VgUKayCZUCv24Jet2Vta+vkBX7/cnvnjmB9Ncb5fHOFQV7LsYohVi2Q0Xy7QqwWyDMpWoDyFBgzIM+EqEGuKXD9+A1Htx/2xgCELIWZiiASbYVCuA2RWBdCbGKIaCsUWGuAtgiqMG2NCt4aoNMCEGZhQ8VCDJkGUASMrgb0O23od9rWtgAAtq+e4elrQLqGCrHb4oVv31kTbEPEBUMC/NYN8ecDfPsXK4YK374zoI7fise1i3uvAfjG6+76+E/Ul6PyejcnFucDTAMkrt85wasFIkQdAQrSPCQF4HJIqvFToKlFcDQNEmqDpIOSxQWYSA1wPyvc9BqgUEV9XB5gxuPykGdYaYuRgeWDibKhWIhg/2SmbFg6CV4/mhp3IIWMoJ/NsTiWgoUYMg1o+jogNTU4gX/Hu+1tBNLoEwAAAABJRU5ErkJggg==" alt="E"><span class="app-brand-txt">Escala para Igrejas</span></a><div class="nav-links"><a href="#" class="flw-nav" onclick="event.preventDefault();window.scrollTo({top:0,behavior:'smooth'})">FLW</a><a href="#prox">Pr&#243;ximo culto</a><a href="#escala">Calend&#225;rio</a><a href="#resumo">Escalas</a></div><a class="flw-btn-m" onclick="window.scrollTo({top:0,behavior:'smooth'})">FLW</a><button class="db" onclick="openDevo()"><svg viewBox="0 0 24 24"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM9 4h2v5l-1-.75L9 9V4zm9 16H6V4h1v9l3-2.25L13 13V4h5v16z"/></svg><span>Devocional</span></button></div>
 <div class="app">
 <div class="tb-spacer"></div>
 <div class="hd"><div class="lb">
