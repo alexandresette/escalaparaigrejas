@@ -401,7 +401,7 @@ if(s.p===name){var per=k==='m'||k==='fm'?'Manh\u00e3':'Noite';list.push({ds:ds,p
 var fCat='',fVol='';
 function buildFilters(data){
 var cats=['Slide/Luz/Live','Som','Foto/V\u00eddeo'];
-var catColors={'Slide/Luz/Live':'var(--a1)','Som':'#f8b739','Foto/V\u00eddeo':'#a29bfe'};
+var catColors={'Slide/Luz/Live':'var(--a1)','Som':'#f8b739','Foto/V\u00eddeo':'#00b4d8'};
 var vols=[];var seen={};
 data.events.forEach(function(ev){['m','n','fm','fn'].forEach(function(k){if(ev.s[k])ev.s[k].forEach(function(s){if(!seen[s.p]){seen[s.p]=1;vols.push(s.p)}})})});
 vols.sort();
