@@ -414,7 +414,7 @@ var ed=new Date(ev.date+'T12:00:00');
 var ds=ed.toLocaleDateString('pt-BR',{weekday:'short',day:'numeric',month:'short'});
 ['m','n','fm','fn'].forEach(function(k){
 if(ev.s[k])ev.s[k].forEach(function(s){
-if(s.p===name){var per=k==='m'||k==='fm'?'Manh\u00e3':'Noite';list.push({ds:ds,per:per,r:s.r})}
+if(s.p===name){var per=k==='m'||k==='fm'?'Manh\u00e3':'Noite';var hr=k==='m'||k==='fm'?'10h':(ev.wd==='Quarta'?'20h':'19h');list.push({ds:ds,per:per+' \u2022 '+hr,r:s.r})}
 })})});return list}
 // Filters
 var fCat='',fVol='';
@@ -500,7 +500,8 @@ slots.forEach(function(s){var vol=Z[s.p]||{};var dc=getTypeColor(s.t);
 var wu='https://wa.me/'+(vol.p||'')+'?text='+encodeURIComponent('Oi '+s.p+'!\n\nVoc\u00ea est\u00e1 escalado(a) para o culto de '+ds+'.\nFun\u00e7\u00e3o: '+s.r+'\n\nConfira a escala completa em:\n'+URL+'\n\nQualquer impedimento, avise com anteced\u00eancia!');
 r+='<div class="mp"><div class="mpa">'+(vol.i?'<img src="'+vol.i+'">':'')+'</div><div style="flex:1"><div class="mpn">'+s.p+'</div><div class="mpr"><span class="mpd" style="background:'+dc+'"></span>'+s.r+'</div></div><div class="mwc"><a class="mpw" href="'+wu+'" target="_blank">'+W+'</a><div class="mwl">Enviar lembrete</div></div></div>'});
 return r;}
-h+=rp('Manh\u00e3',getSlots(ev,'m'));h+=rp('Noite',getSlots(ev,'n'));
+var mLabel=ev.wd==='Domingo'?'Manh\u00e3 \u2022 10h':'Manh\u00e3';var nLabel=ev.wd==='Quarta'?'Noite \u2022 20h':'Noite \u2022 19h';
+h+=rp(mLabel,getSlots(ev,'m'));h+=rp(nLabel,getSlots(ev,'n'));
 var sv=dayIdx(SV);
 h+='<div class="mv"><div class="mt">'+sv.t+'</div><div class="mr">'+sv.r+'</div></div>';
 document.getElementById('dMc').innerHTML=h;
