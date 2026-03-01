@@ -140,9 +140,12 @@ html{scroll-behavior:smooth}
 .sts{margin-top:32px;animation:fu .6s ease .6s both}
 .stg{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:8px;max-width:100%;overflow:hidden}
 .stc{background:var(--card);border:1px solid var(--brd);border-radius:var(--rs);padding:16px;display:flex;align-items:center;gap:14px;transition:all .3s;cursor:pointer;position:relative;overflow:hidden}
-.stc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--gm);opacity:0;transition:opacity .3s}
-.stc:hover{border-color:var(--a1);transform:translateY(-3px);box-shadow:0 8px 40px rgba(108,92,231,.15)}
+.stc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;opacity:0;transition:opacity .3s}
 .stc:hover::before{opacity:1}
+.cat-slide .stc::before{background:var(--gm)}
+.cat-som .stc::before{background:var(--gs)}
+.cat-foto .stc::before{background:var(--gf)}
+.stc:hover{transform:translateY(-3px)}
 .cat-slide .stc:hover{border-color:rgba(108,92,231,.5);background:linear-gradient(135deg,rgba(108,92,231,.15),rgba(0,206,201,.1));box-shadow:0 8px 40px rgba(108,92,231,.2)}
 .cat-som .stc:hover{border-color:rgba(248,183,57,.5);background:linear-gradient(135deg,rgba(248,183,57,.15),rgba(225,112,85,.1));box-shadow:0 8px 40px rgba(248,183,57,.2)}
 .cat-foto .stc:hover{border-color:rgba(162,155,254,.5);background:linear-gradient(135deg,rgba(162,155,254,.15),rgba(253,121,168,.1));box-shadow:0 8px 40px rgba(162,155,254,.2)}
