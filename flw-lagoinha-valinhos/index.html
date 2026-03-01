@@ -14,17 +14,20 @@ html{scroll-behavior:smooth}
 .amb .o:nth-child(3){width:400px;height:400px;background:#fd79a8;top:50%;left:50%;transform:translate(-50%,-50%);animation-delay:-5s}
 @keyframes of{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(30px,-40px) scale(1.1)}66%{transform:translate(-20px,30px) scale(.9)}}
 .app{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:24px 20px 60px;overflow-x:hidden}
-.tb{display:flex;justify-content:space-between;align-items:center;animation:fd .4s ease;position:fixed;top:0;left:0;right:0;z-index:50;padding:12px 20px;transition:all .4s cubic-bezier(.4,0,.2,1);max-width:900px;margin:0 auto}
+.tb{display:flex;justify-content:space-between;align-items:center;animation:fd .4s ease;position:fixed;top:0;left:0;right:0;z-index:50;padding:12px 20px;transition:all .6s ease;max-width:900px;margin:0 auto}
 .tb-spacer{height:56px}
-.tb.scrolled{background:rgba(13,17,30,.75);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(108,92,231,.15);padding:10px 20px;border-radius:0 0 16px 16px;box-shadow:0 8px 32px rgba(0,0,0,.3)}
+.tb.scrolled{background:rgba(13,17,30,.65);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid rgba(108,92,231,.12);padding:10px 20px;border-radius:0 0 16px 16px;box-shadow:0 8px 32px rgba(0,0,0,.25)}
 .tb.scrolled .app-brand{padding:8px;gap:0;font-size:0;border-radius:50%;width:36px;height:36px;justify-content:center}
 .tb.scrolled .app-brand img{width:18px;height:18px}
 .tb.scrolled .db{padding:8px;gap:0;font-size:0;border-radius:50%;width:36px;height:36px;justify-content:center}
 .tb.scrolled .db span{display:none}
 .tb.scrolled .db svg{width:18px;height:18px}
-.flw-btn{display:none;align-items:center;gap:6px;font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--a2);text-decoration:none;padding:6px 16px;border:1px solid rgba(0,206,201,.3);border-radius:100px;background:rgba(0,206,201,.08);cursor:pointer;transition:all .3s;letter-spacing:.5px;text-transform:uppercase;white-space:nowrap}
-.flw-btn:hover{color:#fff;border-color:rgba(0,206,201,.6);background:rgba(0,206,201,.15);box-shadow:0 0 16px rgba(0,206,201,.2)}
-.tb.scrolled .flw-btn{display:flex}
+.flw-nav{display:none}
+.tb.scrolled .nav-links .flw-nav{display:inline;color:var(--a2)!important;font-weight:700!important;border:1px solid rgba(0,206,201,.3);background:rgba(0,206,201,.08)}
+.flw-btn-m{display:none;align-items:center;gap:6px;font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--a2);text-decoration:none;padding:6px 16px;border:1px solid rgba(0,206,201,.3);border-radius:100px;background:rgba(0,206,201,.08);cursor:pointer;transition:all .4s ease;letter-spacing:.5px;text-transform:uppercase;white-space:nowrap}
+.flw-btn-m:hover{color:#fff;border-color:rgba(0,206,201,.6);background:rgba(0,206,201,.15);box-shadow:0 0 16px rgba(0,206,201,.2)}
+.flw-btn-m{display:none!important}
+@media(max-width:640px){.tb.scrolled .flw-btn-m{display:flex!important}}
 .app-brand{display:flex;align-items:center;gap:6px;font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#a29bfe;text-decoration:none;padding:8px 16px;border:1px solid rgba(108,92,231,.4);border-radius:100px;background:linear-gradient(135deg,rgba(108,92,231,.12),rgba(0,206,201,.08));transition:all .4s cubic-bezier(.4,0,.2,1);letter-spacing:.3px;box-shadow:0 0 16px rgba(108,92,231,.12);text-transform:uppercase;white-space:nowrap;overflow:hidden}
 .app-brand:hover{color:#fff;border-color:rgba(108,92,231,.7);box-shadow:0 0 24px rgba(108,92,231,.25);transform:translateY(-1px)}
 .app-brand img{width:16px;height:16px;border-radius:4px;transition:all .4s cubic-bezier(.4,0,.2,1);flex-shrink:0}
@@ -250,7 +253,7 @@ html{scroll-behavior:smooth}
 ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--brd2);border-radius:3px}
 </style></head><body>
 <div class="amb"><div class="o"></div><div class="o"></div><div class="o"></div></div>
-<div class="tb"><a href="/" class="app-brand"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAACd0lEQVR4nO1bsU7DMBA9R8yljIxIHSv+gYWylQExID6BL2BkZ0EMfAATG0hs8BEwgQAhJpBYQAyoQsoxVKmSNrV97tk9O31j69xdXs53fo6jwICD/XfTENE4PV/V/r9kMpArZAtGIswEZCHCmB8sCGh4BqA+A6Swo1wvdKkBUm66jHJMJDKoNUDizY8DgUCCxRTAwmhMKOI1EmGTAbHdfBnGbDARgAl0AS0J5ingXF/jgI4ABEhmHTA1C6YRMLrrhFaCtSTYdoFkYbEQChHG/FBHQOWRJ1IDCkxMg1m1QAV7myuws7FMjqoOD28DODzzvxfBKoc5WyYSfbuCVQ4j5+aJwiDTj7UIcoaLRN+u4G2DzAGHaMHBasDN3Q8cX37aGwMASKkGoJLZUlnFkGmsRGHFnAH6/6LMAK4aMCTA3lYoMHcB3VgUKayCZUCv24Jet2Vta+vkBX7/cnvnjmB9Ncb5fHOFQV7LsYohVi2Q0Xy7QqwWyDMpWoDyFBgzIM+EqEGuKXD9+A1Htx/2xgCELIWZiiASbYVCuA2RWBdCbGKIaCsUWGuAtgiqMG2NCt4aoNMCEGZhQ8VCDJkGUASMrgb0O23od9rWtgAAtq+e4elrQLqGCrHb4oVv31kTbEPEBUMC/NYN8ecDfPsXK4YK374zoI7fise1i3uvAfjG6+76+E/Ul6PyejcnFucDTAMkrt85wasFIkQdAQrSPCQF4HJIqvFToKlFcDQNEmqDpIOSxQWYSA1wPyvc9BqgUEV9XB5gxuPykGdYaYuRgeWDibKhWIhg/2SmbFg6CV4/mhp3IIWMoJ/NsTiWgoUYMg1o+jogNTU4gX/Hu+1tBNLoEwAAAABJRU5ErkJggg==" alt="E">Escala para Igrejas</a><div class="nav-links"><a href="#prox">Pr&#243;ximo culto</a><a href="#escala">Calend&#225;rio</a><a href="#resumo">Escalas</a></div><a class="flw-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">FLW</a><button class="db" onclick="openDevo()"><svg viewBox="0 0 24 24"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM9 4h2v5l-1-.75L9 9V4zm9 16H6V4h1v9l3-2.25L13 13V4h5v16z"/></svg><span>Devocional</span></button></div>
+<div class="tb"><a href="/" class="app-brand"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAACd0lEQVR4nO1bsU7DMBA9R8yljIxIHSv+gYWylQExID6BL2BkZ0EMfAATG0hs8BEwgQAhJpBYQAyoQsoxVKmSNrV97tk9O31j69xdXs53fo6jwICD/XfTENE4PV/V/r9kMpArZAtGIswEZCHCmB8sCGh4BqA+A6Swo1wvdKkBUm66jHJMJDKoNUDizY8DgUCCxRTAwmhMKOI1EmGTAbHdfBnGbDARgAl0AS0J5ingXF/jgI4ABEhmHTA1C6YRMLrrhFaCtSTYdoFkYbEQChHG/FBHQOWRJ1IDCkxMg1m1QAV7myuws7FMjqoOD28DODzzvxfBKoc5WyYSfbuCVQ4j5+aJwiDTj7UIcoaLRN+u4G2DzAGHaMHBasDN3Q8cX37aGwMASKkGoJLZUlnFkGmsRGHFnAH6/6LMAK4aMCTA3lYoMHcB3VgUKayCZUCv24Jet2Vta+vkBX7/cnvnjmB9Ncb5fHOFQV7LsYohVi2Q0Xy7QqwWyDMpWoDyFBgzIM+EqEGuKXD9+A1Htx/2xgCELIWZiiASbYVCuA2RWBdCbGKIaCsUWGuAtgiqMG2NCt4aoNMCEGZhQ8VCDJkGUASMrgb0O23od9rWtgAAtq+e4elrQLqGCrHb4oVv31kTbEPEBUMC/NYN8ecDfPsXK4YK374zoI7fise1i3uvAfjG6+76+E/Ul6PyejcnFucDTAMkrt85wasFIkQdAQrSPCQF4HJIqvFToKlFcDQNEmqDpIOSxQWYSA1wPyvc9BqgUEV9XB5gxuPykGdYaYuRgeWDibKhWIhg/2SmbFg6CV4/mhp3IIWMoJ/NsTiWgoUYMg1o+jogNTU4gX/Hu+1tBNLoEwAAAABJRU5ErkJggg==" alt="E">Escala para Igrejas</a><div class="nav-links"><a href="#" class="flw-nav" onclick="event.preventDefault();window.scrollTo({top:0,behavior:'smooth'})">FLW</a><a href="#prox">Pr&#243;ximo culto</a><a href="#escala">Calend&#225;rio</a><a href="#resumo">Escalas</a></div><a class="flw-btn-m" onclick="window.scrollTo({top:0,behavior:'smooth'})">FLW</a><button class="db" onclick="openDevo()"><svg viewBox="0 0 24 24"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM9 4h2v5l-1-.75L9 9V4zm9 16H6V4h1v9l3-2.25L13 13V4h5v16z"/></svg><span>Devocional</span></button></div>
 <div class="app">
 <div class="tb-spacer"></div>
 <div class="hd"><div class="lb">
@@ -488,7 +491,7 @@ document.getElementById('dMs').textContent=ds;
 var h='';
 function rp(label,slots){if(!slots||!slots.length)return '';var r='<div class="mpl">'+label+'</div>';
 slots.forEach(function(s){var vol=Z[s.p]||{};var dc=getTypeColor(s.t);
-var wu='https://wa.me/'+(vol.p||'')+'?text='+encodeURIComponent('Oi '+s.p+'!\n\nVoce esta escalado(a) para o culto de '+ds+'.\nFuncao: '+s.r+'\n\nConfira a escala completa em:\n'+URL+'\n\nQualquer impedimento, avise com antecedencia!');
+var wu='https://wa.me/'+(vol.p||'')+'?text='+encodeURIComponent('Oi '+s.p+'!\n\nVoc\u00ea est\u00e1 escalado(a) para o culto de '+ds+'.\nFun\u00e7\u00e3o: '+s.r+'\n\nConfira a escala completa em:\n'+URL+'\n\nQualquer impedimento, avise com anteced\u00eancia!');
 r+='<div class="mp"><div class="mpa">'+(vol.i?'<img src="'+vol.i+'">':'')+'</div><div style="flex:1"><div class="mpn">'+s.p+'</div><div class="mpr"><span class="mpd" style="background:'+dc+'"></span>'+s.r+'</div></div><div class="mwc"><a class="mpw" href="'+wu+'" target="_blank">'+W+'</a><div class="mwl">Enviar lembrete</div></div></div>'});
 return r;}
 h+=rp('Manh\u00e3',getSlots(ev,'m'));h+=rp('Noite',getSlots(ev,'n'));
@@ -549,7 +552,7 @@ var ph='';ne.slots.forEach(function(s){var vol=Z[s.p]||{};
 ph+='<div class="npe">'+(vol.i?'<img src="'+vol.i+'">':'')+'<div><div class="npn">'+s.p+'</div><div class="npr">'+s.r+'</div></div></div>';
 });document.getElementById('nP').innerHTML=ph;
 var wh='';ne.slots.forEach(function(s,idx){var vol=Z[s.p]||{};
-var msg='Oi '+s.p+'!\n\nVoce esta escalado(a) para o proximo culto:\n\n'+ne.nm+'\n'+ds+'\nFuncao: '+s.r+'\n\nConfira a escala completa em:\n'+URL+'\n\nQualquer impedimento, avise com antecedencia!';
+var msg='Oi '+s.p+'!\n\nVoc\u00ea est\u00e1 escalado(a) para o pr\u00f3ximo culto:\n\n'+ne.nm+'\n'+ds+'\nFun\u00e7\u00e3o: '+s.r+'\n\nConfira a escala completa em:\n'+URL+'\n\nQualquer impedimento, avise com anteced\u00eancia!';
 var u='https://wa.me/'+(vol.p||'')+'?text='+encodeURIComponent(msg);
 var sc=wColor(idx);
 wh+='<a class="wab" href="'+u+'" target="_blank" style="'+sc+'">'+W+'<div class="wl"><small>'+s.r+'</small>Avisar '+s.p+'</div></a>';
