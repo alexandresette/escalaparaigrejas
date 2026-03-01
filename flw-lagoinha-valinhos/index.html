@@ -68,6 +68,12 @@ html{scroll-behavior:smooth}
 .cc{background:var(--card);border:1px solid var(--brd);border-radius:var(--r);padding:28px;margin:20px 0;position:relative;overflow:hidden;animation:fu .6s ease .3s both}
 .cc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--gm)}
 .nel{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--t3);margin-bottom:8px}
+.nel-live{color:#ff4757;animation:pulse-live 1.5s ease infinite}
+.nel-live::before{content:'';display:inline-block;width:8px;height:8px;background:#ff4757;border-radius:50%;margin-right:8px;animation:pulse-live 1.5s ease infinite}
+@keyframes pulse-live{0%,100%{opacity:1}50%{opacity:.4}}
+.yt-live{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(255,0,0,.15),rgba(255,0,0,.08));border:1px solid rgba(255,0,0,.3);padding:10px 20px;border-radius:100px;font-size:12px;font-weight:700;color:#ff4757;cursor:pointer;font-family:'Syne',sans-serif;text-decoration:none;letter-spacing:.5px;transition:all .3s;margin-bottom:12px}
+.yt-live:hover{border-color:rgba(255,0,0,.6);box-shadow:0 0 20px rgba(255,0,0,.2);color:#fff}
+.yt-live svg{width:16px;height:16px;fill:currentColor}
 .nen{font-family:'Syne',sans-serif;font-size:22px;font-weight:700;margin-bottom:4px}
 .ned{font-size:14px;color:var(--t2);margin-bottom:16px}
 .nep{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
@@ -271,7 +277,8 @@ Lagoinha Valinhos<a href="https://www.instagram.com/lagoinhavalinhos/?hl=en" tar
 <div class="today-date" id="tdt"></div></div>
 <div class="vc"><div class="vt" id="vT"></div><div class="vr" id="vR"></div></div>
 <div class="cc" id="prox">
-<div class="nel">Pr&#243;ximo culto</div>
+<div class="nel" id="nelT">Pr&#243;ximo culto</div>
+<div id="ytLive" style="display:none"></div>
 <div class="nen" id="neN"></div>
 <div class="ned" id="neD"></div>
 <div class="nep" id="nP"></div>
@@ -550,11 +557,48 @@ document.getElementById('dvM').classList.add('a');
 function cdv(){document.getElementById('dvM').classList.remove('a')}
 document.addEventListener('keydown',function(e){if(e.key==='Escape'){cdm();cvm();cdv()}});
 function ucd(data){
-var now=new Date();var ne=null;
+var now=new Date();var ne=null;var live=null;
+var YT='https://www.youtube.com/@LagoinhaValinhos/live';
+// Check all events for live or next
 for(var i=0;i<data.events.length;i++){var ev=data.events[i];
 var am=getSlots(ev,'m');var an=getSlots(ev,'n');
-if(am.length){var dt=new Date(ev.date+'T10:00:00');if(dt>now){ne={nm:ev.wd+' - Manh\u00e3',date:dt,slots:am};break}}
-if(an.length){var hr=ev.wd==='Quarta'?'20:00:00':'19:00:00';var dt2=new Date(ev.date+'T'+hr);if(dt2>now){ne={nm:ev.wd+' - Noite',date:dt2,slots:an};break}}}
+// Morning (Dom 10h-12h)
+if(am.length){
+var mStart=new Date(ev.date+'T10:00:00');var mEnd=new Date(ev.date+'T12:00:00');
+if(now>=mStart&&now<mEnd){live={nm:ev.wd+' - Manh\u00e3 \u2022 10h',date:mStart,end:mEnd,slots:am};break}
+if(mStart>now&&!ne){ne={nm:ev.wd+' - Manh\u00e3 \u2022 10h',date:mStart,slots:am}}
+}
+// Night (Qua 20h-22h, Dom 19h-21:15)
+if(an.length){
+var nhr=ev.wd==='Quarta'?'20:00:00':'19:00:00';
+var nStart=new Date(ev.date+'T'+nhr);
+var nEnd;
+if(ev.wd==='Quarta'){nEnd=new Date(ev.date+'T22:00:00')}
+else{nEnd=new Date(ev.date+'T21:15:00')}
+if(now>=nStart&&now<nEnd){live={nm:ev.wd+' - Noite \u2022 '+(ev.wd==='Quarta'?'20h':'19h'),date:nStart,end:nEnd,slots:an};break}
+if(nStart>now&&!ne){ne={nm:ev.wd+' - Noite \u2022 '+(ev.wd==='Quarta'?'20h':'19h'),date:nStart,slots:an}}
+}
+if(ne)break;
+}
+var nelEl=document.getElementById('nelT');
+var ytEl=document.getElementById('ytLive');
+// LIVE STATE
+if(live){
+nelEl.textContent='\ud83d\udd34 Ao vivo agora';nelEl.className='nel nel-live';
+ytEl.style.display='';
+ytEl.innerHTML='<a class="yt-live" href="'+YT+'" target="_blank"><svg viewBox="0 0 24 24"><path d="M21.58 7.19c-.23-.86-.91-1.54-1.77-1.77C18.25 5 12 5 12 5s-6.25 0-7.81.42c-.86.23-1.54.91-1.77 1.77C2 8.75 2 12 2 12s0 3.25.42 4.81c.23.86.91 1.54 1.77 1.77C5.75 19 12 19 12 19s6.25 0 7.81-.42c.86-.23 1.54-.91 1.77-1.77C22 15.25 22 12 22 12s0-3.25-.42-4.81zM10 15V9l5.2 3-5.2 3z"/></svg>Assista ao vivo</a>';
+document.getElementById('neN').textContent=live.nm;
+document.getElementById('neD').textContent='Culto em andamento';
+document.getElementById('cdT').style.display='none';
+var ph='';live.slots.forEach(function(s){var vol=Z[s.p]||{};
+ph+='<div class="npe">'+(vol.i?'<img src="'+vol.i+'">':'')+'<div><div class="npn">'+s.p+'</div><div class="npr">'+s.r+'</div></div></div>';
+});document.getElementById('nP').innerHTML=ph;
+document.getElementById('waA').innerHTML='';
+return;
+}
+// Reset live state
+nelEl.textContent='Pr\u00f3ximo culto';nelEl.className='nel';
+ytEl.style.display='none';ytEl.innerHTML='';
 if(!ne){document.getElementById('neN').textContent='Nenhum culto pendente';document.getElementById('neD').textContent='Escala do m\u00eas conclu\u00edda';document.getElementById('cdT').style.display='none';document.getElementById('waA').innerHTML='';document.getElementById('nP').innerHTML='';return}
 document.getElementById('cdT').style.display='';
 document.getElementById('neN').textContent=ne.nm;
