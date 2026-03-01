@@ -102,9 +102,8 @@ html{scroll-behavior:smooth}
 .tmb .l{font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--t3);margin-top:2px}
 .wa{margin-top:20px;display:flex;flex-wrap:wrap;gap:10px}
 .wab{flex:1;min-width:180px;display:flex;align-items:center;gap:10px;padding:12px 16px;border-radius:var(--rs);color:var(--t1);font-family:'Outfit',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .25s;text-decoration:none}
-.wab:hover{transform:translateY(-2px);box-shadow:0 4px 20px rgba(37,211,102,.25)}
-.wab svg{width:18px;height:18px;flex-shrink:0;fill:var(--wa);filter:drop-shadow(0 0 4px rgba(37,211,102,.5))}
-.wab svg{width:18px;height:18px;flex-shrink:0}
+.wab:hover{transform:translateY(-2px)}
+.wab svg{width:18px;height:18px;flex-shrink:0;fill:currentColor}
 .wl{display:flex;flex-direction:column}
 .wl small{font-size:9px;font-weight:500;letter-spacing:.5px;text-transform:uppercase;opacity:.7}
 /* Schedule table */
@@ -806,9 +805,16 @@ ph+='<div class="npe">'+(vol.i?'<img src="'+vol.i+'">':'')+'<div><div class="npn
 var wh='';ne.slots.forEach(function(s,idx){var vol=Z[s.p]||{};
 var msg='Oi '+s.p+'!\n\nVoc\u00ea est\u00e1 '+(vol.g==='m'?'escalada':'escalado')+' para o pr\u00f3ximo culto:\n\n'+ne.nm+'\n'+ds+'\nHor\u00e1rio: '+ne.hora+'\nFun\u00e7\u00e3o: '+s.r+'\n\nConfira a escala completa em:\n'+URL+'\n\nQualquer impedimento, avise com anteced\u00eancia!';
 var u='https://wa.me/'+(vol.p||'')+'?text='+encodeURIComponent(msg);
-var sc=wColor(idx);
-wh+='<a class="wab" href="'+u+'" target="_blank" style="'+sc+'">'+W+'<div class="wl"><small>'+s.r+'</small>Avisar '+s.p+'</div></a>';
+var tc={'slide':'108,92,231','ilum':'0,206,201','som':'248,183,57','foto':'162,155,254','open':'0,184,148','consol':'214,48,49'};
+var rgb=tc[s.t]||'108,92,231';
+var sc='border:1px solid rgba('+rgb+',.3);background:linear-gradient(135deg,rgba('+rgb+',.12),rgba('+rgb+',.04))';
+wh+='<a class="wab" href="'+u+'" target="_blank" style="'+sc+'" data-rgb="'+rgb+'">'+W+'<div class="wl"><small>'+s.r+'</small>Avisar '+s.p+'</div></a>';
 });document.getElementById('waA').innerHTML=wh;
+document.querySelectorAll('.wab[data-rgb]').forEach(function(el){
+var rgb=el.getAttribute('data-rgb');
+el.addEventListener('mouseenter',function(){el.style.boxShadow='0 4px 20px rgba('+rgb+',.3)'});
+el.addEventListener('mouseleave',function(){el.style.boxShadow='none'});
+});
 function tick(){var diff=ne.date-new Date();if(diff<=0){ra();return}
 document.getElementById('cD').textContent=Math.floor(diff/864e5);
 document.getElementById('cH').textContent=Math.floor((diff%864e5)/36e5);
