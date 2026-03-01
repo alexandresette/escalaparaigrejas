@@ -379,7 +379,7 @@ function pm(){if(mi>0){mi--;ck=AM[mi];ra()}}
 function nm(){if(mi<AM.length-1){mi++;ck=AM[mi];ra()}}
 // Deterministic daily random using date seed
 function dayIdx(arr){var d=new Date();var seed=d.getFullYear()*10000+d.getMonth()*100+d.getDate();var x=Math.sin(seed)*10000;return arr[Math.abs(Math.floor(x))%arr.length]}
-function dateIdx(arr,dateStr){var d=new Date(dateStr+'T12:00:00');var seed=d.getFullYear()*10000+(d.getMonth()+1)*100+d.getDate();var x=Math.sin(seed*7)*10000;return arr[Math.abs(Math.floor(x))%arr.length]}
+function dateIdx(arr,dateStr){var d=new Date(dateStr+'T12:00:00');var seed=d.getFullYear()*10000+(d.getMonth()+1)*100+d.getDate();var x=Math.sin(seed*72)*10000;return arr[Math.abs(Math.floor(x))%arr.length]}
 (function(){var d=new Date();document.getElementById('tdt').textContent=d.toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'long',year:'numeric'})})();
 // WA button colors per person
 var WC=['#6c5ce7','#00cec9','#fd79a8','#f8b739','#e17055','#a29bfe','#00b894','#74b9ff'];
