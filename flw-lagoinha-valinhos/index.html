@@ -189,6 +189,9 @@ html{scroll-behavior:smooth}
 /* Devo */
 .dv{padding:20px;background:var(--bg);border:1px solid var(--brd);border-radius:var(--rs);margin-bottom:16px;text-align:center}
 .dv-img{width:100%;border-radius:12px;margin-bottom:16px;aspect-ratio:2/1;object-fit:cover;background:linear-gradient(135deg,rgba(108,92,231,.2),rgba(0,206,201,.15),rgba(253,121,168,.1));border:1px solid var(--brd)}
+.dsh-dl{display:flex;align-items:center;gap:8px;justify-content:center;width:100%;padding:12px;border-radius:12px;border:1px solid rgba(108,92,231,.3);background:linear-gradient(135deg,rgba(108,92,231,.1),rgba(0,206,201,.08));color:var(--a1);font-size:13px;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;transition:all .3s;margin-top:8px;text-decoration:none}
+.dsh-dl:hover{border-color:rgba(108,92,231,.6);box-shadow:0 0 20px rgba(108,92,231,.15);color:#fff}
+.dsh-dl svg{width:16px;height:16px;fill:currentColor}
 .dv .dvt{font-size:15px;color:var(--t1);font-style:italic;line-height:1.7}
 .dv .dvr{font-size:12px;font-weight:700;margin-top:10px;background:var(--gw);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:1px}
 .dth{font-size:15px;color:var(--t2);line-height:1.8;margin-bottom:16px}
@@ -578,15 +581,90 @@ function openDevo(){
 var day=new Date().getDate();var d=DEVOS[(day-1)%DEVOS.length];var v=PV[d.v];
 var today=new Date().toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
 document.getElementById('dvDt').textContent=today;
-var h='<img class="dv-img" src="'+d.img+'" alt="Devocional" onerror="this.style.display=\'none\'">';
+var h='<img class="dv-img" src="'+d.img+'" alt="Devocional" crossorigin="anonymous" onerror="this.style.display=\'none\'">';
 h+='<div class="dv"><div class="dvt">'+v.t+'</div><div class="dvr">'+v.r+'</div></div>';
 h+='<div class="dth">'+d.th+'</div>';
 h+='<div class="dpr"><div class="dpl">Ora\u00e7\u00e3o</div><div class="dpt">'+d.pr+'</div></div>';
 var msg=v.t+'\n\n'+v.r+'\n\n'+d.th+'\n\n'+d.pr+'\n\n- Minist\u00e9rio FLW - Lagoinha Valinhos';
 h+='<a class="dsh" href="https://wa.me/?text='+encodeURIComponent(msg)+'" target="_blank">'+W+' Enviar devocional pelo WhatsApp</a>';
+h+='<button class="dsh-dl" onclick="dlDevo()"><svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>Baixar imagem do devocional</button>';
 document.getElementById('dvC').innerHTML=h;
 document.getElementById('dvM').classList.add('a');
+window._devoData={img:d.img,verse:v.t,ref:v.r,th:d.th};
 }
+function dlDevo(){
+var dd=window._devoData;if(!dd)return;
+var cv=document.createElement('canvas');cv.width=1080;cv.height=1080;
+var cx=cv.getContext('2d');
+var img=new Image();img.crossOrigin='anonymous';
+img.onload=function(){
+// Draw image covering full canvas
+var s=Math.max(1080/img.width,1080/img.height);
+var w=img.width*s,h=img.height*s;
+cx.drawImage(img,(1080-w)/2,(1080-h)/2,w,h);
+// Dark gradient overlay
+var g=cx.createLinearGradient(0,0,0,1080);
+g.addColorStop(0,'rgba(0,0,0,0.3)');g.addColorStop(0.4,'rgba(0,0,0,0.5)');g.addColorStop(1,'rgba(0,0,0,0.85)');
+cx.fillStyle=g;cx.fillRect(0,0,1080,1080);
+// Top badge
+cx.fillStyle='rgba(108,92,231,0.8)';
+roundRect(cx,40,40,280,36,18);cx.fill();
+cx.fillStyle='#fff';cx.font='bold 14px sans-serif';cx.textAlign='left';
+cx.fillText('DEVOCIONAL DO DIA',60,64);
+// Verse text
+cx.fillStyle='#fff';cx.font='italic 32px Georgia, serif';cx.textAlign='center';
+wrapText(cx,dd.verse,540,320,960,42);
+// Reference
+cx.fillStyle='rgba(253,121,168,1)';cx.font='bold 20px sans-serif';
+cx.fillText(dd.ref,540,getLastY()+50);
+// Divider line
+var ly=getLastY()+30;
+cx.strokeStyle='rgba(255,255,255,0.2)';cx.lineWidth=1;
+cx.beginPath();cx.moveTo(200,ly);cx.lineTo(880,ly);cx.stroke();
+// Reflection
+cx.fillStyle='rgba(255,255,255,0.9)';cx.font='18px sans-serif';cx.textAlign='center';
+wrapText(cx,dd.th,540,ly+30,920,26);
+// Footer
+cx.fillStyle='rgba(255,255,255,0.4)';cx.font='14px sans-serif';
+cx.fillText('Minist\u00e9rio FLW \u2022 Lagoinha Valinhos',540,1050);
+// Download
+var a=document.createElement('a');a.download='devocional-'+new Date().getDate()+'-mar.png';
+a.href=cv.toDataURL('image/png');a.click();
+};
+img.onerror=function(){
+// Fallback: gradient background without photo
+var g2=cx.createLinearGradient(0,0,1080,1080);
+g2.addColorStop(0,'#1a1a2e');g2.addColorStop(0.5,'#16213e');g2.addColorStop(1,'#0f3460');
+cx.fillStyle=g2;cx.fillRect(0,0,1080,1080);
+// Decorative circles
+cx.globalAlpha=0.08;cx.fillStyle='#6c5ce7';
+cx.beginPath();cx.arc(200,200,300,0,Math.PI*2);cx.fill();
+cx.fillStyle='#00cec9';cx.beginPath();cx.arc(880,800,250,0,Math.PI*2);cx.fill();
+cx.globalAlpha=1;
+cx.fillStyle='rgba(108,92,231,0.8)';roundRect(cx,40,40,280,36,18);cx.fill();
+cx.fillStyle='#fff';cx.font='bold 14px sans-serif';cx.textAlign='left';cx.fillText('DEVOCIONAL DO DIA',60,64);
+cx.fillStyle='#fff';cx.font='italic 32px Georgia, serif';cx.textAlign='center';
+wrapText(cx,dd.verse,540,320,960,42);
+cx.fillStyle='rgba(253,121,168,1)';cx.font='bold 20px sans-serif';cx.fillText(dd.ref,540,getLastY()+50);
+var ly=getLastY()+30;cx.strokeStyle='rgba(255,255,255,0.2)';cx.lineWidth=1;
+cx.beginPath();cx.moveTo(200,ly);cx.lineTo(880,ly);cx.stroke();
+cx.fillStyle='rgba(255,255,255,0.9)';cx.font='18px sans-serif';wrapText(cx,dd.th,540,ly+30,920,26);
+cx.fillStyle='rgba(255,255,255,0.4)';cx.font='14px sans-serif';cx.fillText('Minist\u00e9rio FLW \u2022 Lagoinha Valinhos',540,1050);
+var a=document.createElement('a');a.download='devocional-'+new Date().getDate()+'-mar.png';a.href=cv.toDataURL('image/png');a.click();
+};
+img.src=dd.img;
+}
+var _lastY=0;
+function getLastY(){return _lastY}
+function wrapText(cx,text,x,y,mw,lh){
+var words=text.split(' ');var line='';_lastY=y;
+for(var i=0;i<words.length;i++){
+var test=line+words[i]+' ';
+if(cx.measureText(test).width>mw&&i>0){cx.fillText(line.trim(),x,_lastY);_lastY+=lh;line=words[i]+' '}
+else{line=test}}
+cx.fillText(line.trim(),x,_lastY);
+}
+function roundRect(cx,x,y,w,h,r){cx.beginPath();cx.moveTo(x+r,y);cx.lineTo(x+w-r,y);cx.quadraticCurveTo(x+w,y,x+w,y+r);cx.lineTo(x+w,y+h-r);cx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);cx.lineTo(x+r,y+h);cx.quadraticCurveTo(x,y+h,x,y+h-r);cx.lineTo(x,y+r);cx.quadraticCurveTo(x,y,x+r,y);cx.closePath()}
 function cdv(){document.getElementById('dvM').classList.remove('a')}
 document.addEventListener('keydown',function(e){if(e.key==='Escape'){cdm();cvm();cdv()}});
 function ucd(data){
