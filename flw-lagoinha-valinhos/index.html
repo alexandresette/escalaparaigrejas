@@ -80,7 +80,7 @@ html{scroll-behavior:smooth}
 .vt{font-size:14px;font-weight:400;color:var(--t2);line-height:1.7;font-style:italic;max-width:640px;margin:0 auto}
 .vr{margin-top:10px;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;background:var(--gw);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 /* Countdown */
-.cc{background:var(--card);border:1px solid var(--brd);border-radius:var(--r);padding:28px;margin:20px 0;position:relative;overflow:hidden;animation:fu .6s ease .3s both}
+.cc{background:linear-gradient(135deg,rgba(108,92,231,.08),var(--card) 40%,var(--card) 60%,rgba(0,206,201,.06));border:1px solid rgba(108,92,231,.2);border-radius:var(--r);padding:28px;margin:20px 0;position:relative;overflow:hidden;animation:fu .6s ease .3s both}
 .cc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--gm)}
 .nel{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--t3);margin-bottom:8px}
 .nel-live{color:#ff4757;animation:pulse-live 1.5s ease infinite}
@@ -619,7 +619,7 @@ document.getElementById('dMs').textContent=ds;
 var h='';
 function rp(label,slots,horario){if(!slots||!slots.length)return '';var r='<div class="mpl">'+label+'</div>';
 slots.forEach(function(s){var vol=Z[s.p]||{};var dc=getTypeColor(s.t);
-var wu='https://wa.me/'+(vol.p||'')+'?text='+encodeURIComponent('Oi '+s.p+'!\n\nVoc\u00ea est\u00e1 '+(vol.g==='m'?'escalada':'escalado')+' para o culto de '+ds+'.\n\n\ud83d\udcc5 '+ds+'\n\u23f0 Hor\u00e1rio: '+horario+'\n\ud83c\udfaf Fun\u00e7\u00e3o: '+s.r+'\n\nConfira a escala completa em:\n'+URL+'\n\nQualquer impedimento, avise com anteced\u00eancia!');
+var wu='https://wa.me/'+(vol.p||'')+'?text='+encodeURIComponent('Oi '+s.p+'!\n\nVoc\u00ea est\u00e1 '+(vol.g==='m'?'escalada':'escalado')+':\n\n'+ds+'\nHor\u00e1rio: '+horario+'\nFun\u00e7\u00e3o: '+s.r+'\n\nConfira a escala completa em:\n'+URL+'\n\nQualquer impedimento, avise com anteced\u00eancia!');
 r+='<div class="mp"><div class="mpa">'+(vol.i?'<img src="'+vol.i+'">':'')+'</div><div style="flex:1"><div class="mpn">'+s.p+'</div><div class="mpr"><span class="mpd" style="background:'+dc+'"></span>'+s.r+'</div></div><div class="mwc"><a class="mpw" href="'+wu+'" target="_blank">'+W+'</a><div class="mwl">Enviar lembrete</div></div></div>'});
 return r;}
 var mLabel=ev.wd==='Domingo'?'Manh\u00e3 \u2022 10h':'Manh\u00e3';var nLabel=ev.wd==='Quarta'?'Noite \u2022 20h':'Noite \u2022 19h';
@@ -650,8 +650,8 @@ h+='<div class="vme"><div class="vmd">'+s.ds+'</div><div class="vmr">'+s.per+' \
 h+='<div class="mv"><div class="mt">'+pv.t+'</div><div class="mr">'+pv.r+'</div></div>';
 if(vol.p){
 var waMsg='Oi '+name+'!\n\nSua escala de '+data.month+' '+data.year+':\n\n';
-sched.forEach(function(s){waMsg+='\ud83d\udcc5 '+s.ds+'\n\u23f0 '+s.per+'\n\ud83c\udfaf '+s.r+'\n\n'});
-waMsg+='Confira a escala completa em:\n'+URL;
+sched.forEach(function(s){waMsg+=s.ds+' | '+s.per+' | '+s.r+'\n'});
+waMsg+='\nConfira a escala completa em:\n'+URL;
 h+='<a class="vmwa" href="https://wa.me/'+vol.p+'?text='+encodeURIComponent(waMsg)+'" target="_blank">'+W+' Enviar escala</a>';}
 document.getElementById('vMc').innerHTML=h;
 document.getElementById('vM').classList.add('a');
@@ -800,7 +800,7 @@ var ph='';ne.slots.forEach(function(s){var vol=Z[s.p]||{};
 ph+='<div class="npe">'+(vol.i?'<img src="'+vol.i+'">':'')+'<div><div class="npn">'+s.p+'</div><div class="npr">'+s.r+'</div></div></div>';
 });document.getElementById('nP').innerHTML=ph;
 var wh='';ne.slots.forEach(function(s,idx){var vol=Z[s.p]||{};
-var msg='Oi '+s.p+'!\n\nVoc\u00ea est\u00e1 '+(vol.g==='m'?'escalada':'escalado')+' para o pr\u00f3ximo culto:\n\n\ud83d\udcc5 '+ds+'\n\u23f0 Hor\u00e1rio: '+ne.hora+'\n\ud83c\udfaf Fun\u00e7\u00e3o: '+s.r+'\n\nConfira a escala completa em:\n'+URL+'\n\nQualquer impedimento, avise com anteced\u00eancia!';
+var msg='Oi '+s.p+'!\n\nVoc\u00ea est\u00e1 '+(vol.g==='m'?'escalada':'escalado')+':\n\n'+ds+'\nHor\u00e1rio: '+ne.hora+'\nFun\u00e7\u00e3o: '+s.r+'\n\nConfira a escala completa em:\n'+URL+'\n\nQualquer impedimento, avise com anteced\u00eancia!';
 var u='https://wa.me/'+(vol.p||'')+'?text='+encodeURIComponent(msg);
 var tc={'slide':'108,92,231','ilum':'0,206,201','som':'248,183,57','foto':'162,155,254','open':'0,184,148','consol':'214,48,49'};
 var rgb=tc[s.t]||'108,92,231';
