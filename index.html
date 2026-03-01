@@ -1,0 +1,58 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Escala para Igrejas</title>
+<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAACd0lEQVR4nO1bsU7DMBA9R8yljIxIHSv+gYWylQExID6BL2BkZ0EMfAATG0hs8BEwgQAhJpBYQAyoQsoxVKmSNrV97tk9O31j69xdXs53fo6jwICD/XfTENE4PV/V/r9kMpArZAtGIswEZCHCmB8sCGh4BqA+A6Swo1wvdKkBUm66jHJMJDKoNUDizY8DgUCCxRTAwmhMKOI1EmGTAbHdfBnGbDARgAl0AS0J5ingXF/jgI4ABEhmHTA1C6YRMLrrhFaCtSTYdoFkYbEQChHG/FBHQOWRJ1IDCkxMg1m1QAV7myuws7FMjqoOD28DODzzvxfBKoc5WyYSfbuCVQ4j5+aJwiDTj7UIcoaLRN+u4G2DzAGHaMHBasDN3Q8cX37aGwMASKkGoJLZUlnFkGmsRGHFnAH6/6LMAK4aMCTA3lYoMHcB3VgUKayCZUCv24Jet2Vta+vkBX7/cnvnjmB9Ncb5fHOFQV7LsYohVi2Q0Xy7QqwWyDMpWoDyFBgzIM+EqEGuKXD9+A1Htx/2xgCELIWZiiASbYVCuA2RWBdCbGKIaCsUWGuAtgiqMG2NCt4aoNMCEGZhQ8VCDJkGUASMrgb0O23od9rWtgAAtq+e4elrQLqGCrHb4oVv31kTbEPEBUMC/NYN8ecDfPsXK4YK374zoI7fise1i3uvAfjG6+76+E/Ul6PyejcnFucDTAMkrt85wasFIkQdAQrSPCQF4HJIqvFToKlFcDQNEmqDpIOSxQWYSA1wPyvc9BqgUEV9XB5gxuPykGdYaYuRgeWDibKhWIhg/2SmbFg6CV4/mhp3IIWMoJ/NsTiWgoUYMg1o+jogNTU4gX/Hu+1tBNLoEwAAAABJRU5ErkJggg==">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#08090d;--card:#0f1118;--elev:#161822;--brd:#1e2235;--t1:#e8eaf0;--t2:#8b90a8;--t3:#555a72;--a1:#6c5ce7;--a2:#00cec9;--a3:#fd79a8;--gm:linear-gradient(135deg,#6c5ce7,#00cec9);--r:16px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--t1);min-height:100vh;overflow-x:hidden}
+.amb{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.amb .o{position:absolute;border-radius:50%;filter:blur(140px);opacity:.08;animation:of 25s ease-in-out infinite}
+.amb .o:nth-child(1){width:700px;height:700px;background:#6c5ce7;top:-300px;left:-200px}
+.amb .o:nth-child(2){width:600px;height:600px;background:#00cec9;bottom:-200px;right:-150px;animation-delay:-12s}
+.amb .o:nth-child(3){width:500px;height:500px;background:#fd79a8;top:40%;left:60%;animation-delay:-6s}
+@keyframes of{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(40px,-50px) scale(1.1)}66%{transform:translate(-30px,40px) scale(.9)}}
+.wrap{position:relative;z-index:1;max-width:800px;margin:0 auto;padding:60px 24px;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.brand{text-align:center;margin-bottom:60px;animation:fd .8s ease}
+.brand-tag{display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--a2);margin-bottom:20px;padding:6px 16px;border:1px solid rgba(0,206,201,.2);border-radius:100px;background:rgba(0,206,201,.05)}
+.brand-tag .dot{width:6px;height:6px;border-radius:50%;background:var(--a2);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.brand h1{font-family:'Syne',sans-serif;font-size:clamp(32px,7vw,68px);font-weight:800;line-height:1.3;letter-spacing:-2px;margin-bottom:20px;text-transform:uppercase}
+.brand h1 .g1{background:var(--gm);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.brand h1 .g2{background:linear-gradient(135deg,#fd79a8,#f8b739);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.brand p{font-size:18px;color:var(--t2);max-width:500px;margin:0 auto;line-height:1.7}
+.churches{margin-top:60px;width:100%;animation:fu .8s ease .3s both}
+.churches h2{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--t3);text-align:center;margin-bottom:20px}
+.church-card{display:flex;align-items:center;gap:20px;padding:24px 28px;background:var(--card);border:1px solid var(--brd);border-radius:var(--r);cursor:pointer;transition:all .3s;text-decoration:none;color:var(--t1);position:relative;overflow:hidden}
+.church-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--gm);opacity:0;transition:opacity .3s}
+.church-card:hover{border-color:var(--a1);transform:translateY(-3px);box-shadow:0 8px 40px rgba(108,92,231,.15)}
+.church-card:hover::before{opacity:1}
+.ch-logo{width:56px;height:56px;border-radius:50%;border:2px solid var(--brd);overflow:hidden;flex-shrink:0;background:var(--elev);display:flex;align-items:center;justify-content:center}
+.ch-logo img{width:100%;height:100%;object-fit:cover;filter:invert(1)}
+.ch-info{flex:1}
+.ch-name{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;line-height:1.3;text-transform:uppercase}
+.ch-desc{font-size:13px;color:var(--t2);margin-top:4px}
+.ch-arr{font-size:24px;color:var(--t3);transition:all .3s}
+.church-card:hover .ch-arr{color:var(--a1);transform:translateX(4px)}
+.footer{margin-top:80px;text-align:center;font-size:11px;color:var(--t3);letter-spacing:.5px;animation:fu .8s ease .5s both}
+@keyframes fd{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fu{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+</style></head><body>
+<div class="amb"><div class="o"></div><div class="o"></div><div class="o"></div></div>
+<div class="wrap">
+<div class="brand">
+<div class="brand-tag"><div class="dot"></div>Plataforma em construção</div>
+<h1><span style="white-space:nowrap"><span class="g1">Escala</span> para</span><br><span class="g2">Igrejas</span></h1>
+<p>Organize escalas de ministérios, acompanhe voluntários e comunique-se com sua equipe.</p>
+</div>
+<div class="churches">
+<h2>Igrejas ativas</h2>
+<a class="church-card" href="/flw-lagoinha-valinhos/">
+<div class="ch-logo"><img src="data:image/png;base64,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" alt="Lagoinha"></div>
+<div class="ch-info"><div class="ch-name">Lagoinha Valinhos</div><div class="ch-desc">Ministério de Mídia • FLW</div></div>
+<div class="ch-arr">→</div>
+</a>
+</div>
+<div class="footer">Desenvolvido por Alexandre Sette</div>
+</div>
+</body></html>
