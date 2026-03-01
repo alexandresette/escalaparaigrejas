@@ -182,7 +182,7 @@ html{scroll-behavior:smooth}
 .vmwa svg{width:18px;height:18px;fill:var(--wa)}
 /* Devo */
 .dv{padding:20px;background:var(--bg);border:1px solid var(--brd);border-radius:var(--rs);margin-bottom:16px;text-align:center}
-.dv-img{width:100%;border-radius:12px;margin-bottom:16px;aspect-ratio:2/1;object-fit:cover;background:var(--elev);border:1px solid var(--brd)}
+.dv-img{width:100%;border-radius:12px;margin-bottom:16px;aspect-ratio:2/1;object-fit:cover;background:linear-gradient(135deg,rgba(108,92,231,.2),rgba(0,206,201,.15),rgba(253,121,168,.1));border:1px solid var(--brd)}
 .dv .dvt{font-size:15px;color:var(--t1);font-style:italic;line-height:1.7}
 .dv .dvr{font-size:12px;font-weight:700;margin-top:10px;background:var(--gw);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:1px}
 .dth{font-size:15px;color:var(--t2);line-height:1.8;margin-bottom:16px}
@@ -538,7 +538,7 @@ var today=new Date().toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',mo
 document.getElementById('dvDt').textContent=today;
 var seed=new Date().getFullYear()*10000+new Date().getMonth()*100+new Date().getDate();
 var imgUrl='https://image.pollinations.ai/prompt/'+encodeURIComponent(d.img)+'?width=800&height=400&seed='+seed+'&nologo=true';
-var h='<img class="dv-img" src="'+imgUrl+'" alt="Devocional">';
+var h='<img class="dv-img" src="'+imgUrl+'" alt="Devocional" onerror="this.style.display=\'none\'">';
 h+='<div class="dv"><div class="dvt">'+v.t+'</div><div class="dvr">'+v.r+'</div></div>';
 h+='<div class="dth">'+d.th+'</div>';
 h+='<div class="dpr"><div class="dpl">Ora\u00e7\u00e3o</div><div class="dpt">'+d.pr+'</div></div>';
