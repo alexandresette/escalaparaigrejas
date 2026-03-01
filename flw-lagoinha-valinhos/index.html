@@ -202,7 +202,7 @@ html{scroll-behavior:smooth}
 .vmh{display:flex;align-items:center;gap:16px;margin-bottom:20px}
 .vma{width:64px;height:64px;border-radius:50%;overflow:hidden;border:3px solid var(--brd2);flex-shrink:0}
 .vma img{width:100%;height:100%;object-fit:cover}
-.vmn{font-family:'Syne',sans-serif;font-size:20px;font-weight:700}
+.vmn{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;text-transform:uppercase;letter-spacing:-1px}
 .vmg{font-size:12px;color:var(--t3);margin-top:2px}
 .vmp{font-size:13px;color:var(--t2);margin-top:4px}
 .vms{display:flex;gap:12px;margin-bottom:20px}
@@ -508,14 +508,15 @@ var ed=new Date(ev.date+'T12:00:00');
 var ds=ed.toLocaleDateString('pt-BR',{weekday:'short',day:'numeric',month:'short'});
 ['m','n','fm','fn'].forEach(function(k){
 if(ev.s[k])ev.s[k].forEach(function(s){
-if(s.p===name){var per=k==='m'||k==='fm'?'Manh\u00e3':'Noite';var hr=k==='m'||k==='fm'?'10h':(ev.wd==='Quarta'?'20h':'19h');list.push({ds:ds,per:per+' \u2022 '+hr,r:s.r})}
+if(s.p===name){var per=k==='m'||k==='fm'?'Manh\u00e3':'Noite';var hr=k==='m'||k==='fm'?'10h':(ev.wd==='Quarta'?'20h':'19h');list.push({date:ev.date,per2:k==='m'||k==='fm'?0:1,ds:ds,per:per+' \u2022 '+hr,r:s.r})}
 })})});
 if(data.om)data.om.forEach(function(x){
 if(x.p===name){var ed=new Date(x.date+'T12:00:00');
 var ds=ed.toLocaleDateString('pt-BR',{weekday:'short',day:'numeric',month:'short'});
 var per=x.per==='m'?'Manh\u00e3':'Noite';var hr=x.per==='m'?'10h':(x.wd==='Quarta'?'20h':'19h');
-list.push({ds:ds,per:per+' \u2022 '+hr,r:x.r})}
+list.push({date:x.date,per2:x.per==='m'?0:1,ds:ds,per:per+' \u2022 '+hr,r:x.r})}
 });
+list.sort(function(a,b){if(a.date!==b.date)return a.date<b.date?-1:1;return a.per2-b.per2});
 return list}
 // Filters
 var fCat='',fVol='';
@@ -643,7 +644,7 @@ var sched=getPersonSchedule(data,name);
 // Determine gradient for count based on primary category
 var catGrad={'Slide/Luz/Live':'var(--gm)','Som':'var(--gs)','Foto/V\u00eddeo':'var(--gf)','Open':'var(--go)','Consolida\u00e7\u00e3o':'var(--gc)'};
 var pGrad=catGrad[vol.c]||'var(--gm)';
-var h='<div class="vmh"><div class="vma">'+(vol.i?'<img src="'+vol.i+'">':'')+'</div><div><div class="vmn">'+name+'</div><div class="vmg">'+(vol.c||'')+(vol.ldr?' \u2022 L\u00edder':'')+'</div><div class="vmp">'+ph+'</div></div></div>';
+var h='<div class="vmh"><div class="vma">'+(vol.i?'<img src="'+vol.i+'">':'')+'</div><div><div class="vmn" style="background:'+pGrad+';-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">'+name+'</div><div class="vmg">'+(vol.c||'')+(vol.ldr?' \u2022 L\u00edder':'')+'</div><div class="vmp">'+ph+'</div></div></div>';
 h+='<div class="vms"><div class="vmst"><div class="vn" style="background:'+pGrad+';-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">'+ct+'</div><div class="vl">Escalas no m\u00eas</div></div></div>';
 if(sched.length){
 h+='<div class="mpl">Escalas em '+data.month+'</div><div class="vml">';
