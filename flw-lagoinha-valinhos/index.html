@@ -537,7 +537,7 @@ var d=dayIdx(DEVOS);var v=PV[d.v];
 var today=new Date().toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
 document.getElementById('dvDt').textContent=today;
 var seed=new Date().getFullYear()*10000+new Date().getMonth()*100+new Date().getDate();
-var imgUrl='https://image.pollinations.ai/prompt/'+encodeURIComponent(d.img)+'?model=flux&width=800&height=400&seed='+seed+'&nologo=true&token=pk_0k8FGte0IIKC10JN';
+var imgUrl='https://gen.pollinations.ai/image/'+encodeURIComponent(d.img)+'?model=flux&width=800&height=400&seed='+seed+'&nologo=true&key=pk_0k8FGte0IIKC10JN';
 var h='<img class="dv-img" src="'+imgUrl+'" alt="Devocional" onerror="this.style.display=\'none\'">';
 h+='<div class="dv"><div class="dvt">'+v.t+'</div><div class="dvr">'+v.r+'</div></div>';
 h+='<div class="dth">'+d.th+'</div>';
