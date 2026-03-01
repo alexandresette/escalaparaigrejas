@@ -607,35 +607,17 @@ function dlDevo(){
 var dd=window._devoData;if(!dd)return;
 var cv=document.createElement('canvas');cv.width=1080;cv.height=1080;
 var cx=cv.getContext('2d');
+var lobsterLoaded=false;
+var lobster=new FontFace('Lobster','url(https://fonts.gstatic.com/s/lobster/v30/neILzCirqoswsqX9zoKmM4MwWJU.woff2)');
+lobster.load().then(function(f){document.fonts.add(f);lobsterLoaded=true;loadImg()}).catch(function(){loadImg()});
+function loadImg(){
 var img=new Image();img.crossOrigin='anonymous';
-function drawCard(cx){
-// Top badge centered
-cx.fillStyle='rgba(108,92,231,0.85)';
-var bw=260,bh=40,bx=(1080-bw)/2,by=60;
-roundRect(cx,bx,by,bw,bh,20);cx.fill();
-cx.fillStyle='#fff';cx.font='bold 15px sans-serif';cx.textAlign='center';cx.textBaseline='middle';
-cx.fillText('DEVOCIONAL DO DIA',540,by+bh/2);
-// Verse centered large
-cx.fillStyle='#fff';cx.font='italic 44px Georgia, serif';cx.textAlign='center';cx.textBaseline='middle';
-var lines=wrapLines(cx,dd.verse,860);
-var lh=58;var totalH=lines.length*lh;var startY=(1080-totalH)/2;
-for(var i=0;i<lines.length;i++){cx.fillText(lines[i],540,startY+i*lh+lh/2)}
-// Reference below verse
-cx.fillStyle='rgba(253,121,168,1)';cx.font='bold 22px sans-serif';
-cx.fillText(dd.ref,540,startY+totalH+50);
-// Footer
-cx.fillStyle='rgba(255,255,255,0.35)';cx.font='14px sans-serif';
-cx.fillText('Minist\u00e9rio FLW \u2022 Lagoinha Valinhos',540,1040);
-// Download
-var a=document.createElement('a');a.download='devocional-'+new Date().getDate()+'-mar.png';
-a.href=cv.toDataURL('image/png');a.click();
-}
 img.onload=function(){
 var s=Math.max(1080/img.width,1080/img.height);
 var w=img.width*s,h=img.height*s;
 cx.drawImage(img,(1080-w)/2,(1080-h)/2,w,h);
 var g=cx.createLinearGradient(0,0,0,1080);
-g.addColorStop(0,'rgba(0,0,0,0.45)');g.addColorStop(0.5,'rgba(0,0,0,0.6)');g.addColorStop(1,'rgba(0,0,0,0.45)');
+g.addColorStop(0,'rgba(0,0,0,0.5)');g.addColorStop(0.5,'rgba(0,0,0,0.65)');g.addColorStop(1,'rgba(0,0,0,0.5)');
 cx.fillStyle=g;cx.fillRect(0,0,1080,1080);
 drawCard(cx);
 };
@@ -650,6 +632,30 @@ cx.globalAlpha=1;
 drawCard(cx);
 };
 img.src=dd.img;
+}
+function drawCard(cx){
+// Top badge centered - bigger
+cx.fillStyle='rgba(108,92,231,0.85)';
+var bw=340,bh=52,bx=(1080-bw)/2,by=55;
+roundRect(cx,bx,by,bw,bh,26);cx.fill();
+cx.fillStyle='#fff';cx.font='bold 20px sans-serif';cx.textAlign='center';cx.textBaseline='middle';
+cx.fillText('DEVOCIONAL DO DIA',540,by+bh/2);
+// Verse centered large with Lobster
+var vFont=lobsterLoaded?'56px Lobster':'italic 52px Georgia, serif';
+cx.fillStyle='#fff';cx.font=vFont;cx.textAlign='center';cx.textBaseline='middle';
+var lines=wrapLines(cx,dd.verse,860);
+var lh=72;var totalH=lines.length*lh;var startY=(1080-totalH)/2+10;
+for(var i=0;i<lines.length;i++){cx.fillText(lines[i],540,startY+i*lh+lh/2)}
+// Reference below verse - bigger
+cx.fillStyle='rgba(253,121,168,1)';cx.font='bold 28px sans-serif';
+cx.fillText(dd.ref,540,startY+totalH+55);
+// Footer
+cx.fillStyle='rgba(255,255,255,0.35)';cx.font='16px sans-serif';
+cx.fillText('Minist\u00e9rio FLW \u2022 Lagoinha Valinhos',540,1040);
+// Download
+var a=document.createElement('a');a.download='devocional-'+new Date().getDate()+'-mar.png';
+a.href=cv.toDataURL('image/png');a.click();
+}
 }
 function wrapLines(cx,text,mw){
 var words=text.split(' ');var lines=[];var line='';
