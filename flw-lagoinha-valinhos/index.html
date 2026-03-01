@@ -556,13 +556,14 @@ var ds=ed.toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'long',
 document.getElementById('dMt').textContent=ev.wd;
 document.getElementById('dMs').textContent=ds;
 var h='';
-function rp(label,slots){if(!slots||!slots.length)return '';var r='<div class="mpl">'+label+'</div>';
+function rp(label,slots,horario){if(!slots||!slots.length)return '';var r='<div class="mpl">'+label+'</div>';
 slots.forEach(function(s){var vol=Z[s.p]||{};var dc=getTypeColor(s.t);
-var wu='https://wa.me/'+(vol.p||'')+'?text='+encodeURIComponent('Oi '+s.p+'!\n\nVoc\u00ea est\u00e1 '+(vol.g==='m'?'escalada':'escalado')+' para o culto de '+ds+'.\nFun\u00e7\u00e3o: '+s.r+'\n\nConfira a escala completa em:\n'+URL+'\n\nQualquer impedimento, avise com anteced\u00eancia!');
+var wu='https://wa.me/'+(vol.p||'')+'?text='+encodeURIComponent('Oi '+s.p+'!\n\nVoc\u00ea est\u00e1 '+(vol.g==='m'?'escalada':'escalado')+' para o culto de '+ds+'.\nHor\u00e1rio: '+horario+'\nFun\u00e7\u00e3o: '+s.r+'\n\nConfira a escala completa em:\n'+URL+'\n\nQualquer impedimento, avise com anteced\u00eancia!');
 r+='<div class="mp"><div class="mpa">'+(vol.i?'<img src="'+vol.i+'">':'')+'</div><div style="flex:1"><div class="mpn">'+s.p+'</div><div class="mpr"><span class="mpd" style="background:'+dc+'"></span>'+s.r+'</div></div><div class="mwc"><a class="mpw" href="'+wu+'" target="_blank">'+W+'</a><div class="mwl">Enviar lembrete</div></div></div>'});
 return r;}
 var mLabel=ev.wd==='Domingo'?'Manh\u00e3 \u2022 10h':'Manh\u00e3';var nLabel=ev.wd==='Quarta'?'Noite \u2022 20h':'Noite \u2022 19h';
-h+=rp(mLabel,getSlots(ev,'m'));h+=rp(nLabel,getSlots(ev,'n'));
+var mHora=ev.wd==='Domingo'?'10h':'';var nHora=ev.wd==='Quarta'?'20h':'19h';
+h+=rp(mLabel,getSlots(ev,'m'),mHora);h+=rp(nLabel,getSlots(ev,'n'),nHora);
 var sv=dateIdx(SV,ev.date);
 h+='<div class="mv"><div class="mt">'+sv.t+'</div><div class="mr">'+sv.r+'</div></div>';
 document.getElementById('dMc').innerHTML=h;
@@ -691,7 +692,7 @@ var am=getSlots(ev,'m');var an=getSlots(ev,'n');
 if(am.length){
 var mStart=new Date(ev.date+'T10:00:00');var mEnd=new Date(ev.date+'T12:00:00');
 if(now>=mStart&&now<mEnd){live={nm:ev.wd+' - Manh\u00e3 \u2022 10h',date:mStart,end:mEnd,slots:am};break}
-if(mStart>now&&!ne){ne={nm:ev.wd+' - Manh\u00e3 \u2022 10h',date:mStart,slots:am}}
+if(mStart>now&&!ne){ne={nm:ev.wd+' - Manh\u00e3 \u2022 10h',date:mStart,slots:am,hora:'10h'}}
 }
 // Night (Qua 20h-22h, Dom 19h-21:15)
 if(an.length){
@@ -701,7 +702,7 @@ var nEnd;
 if(ev.wd==='Quarta'){nEnd=new Date(ev.date+'T22:00:00')}
 else{nEnd=new Date(ev.date+'T21:15:00')}
 if(now>=nStart&&now<nEnd){live={nm:ev.wd+' - Noite \u2022 '+(ev.wd==='Quarta'?'20h':'19h'),date:nStart,end:nEnd,slots:an};break}
-if(nStart>now&&!ne){ne={nm:ev.wd+' - Noite \u2022 '+(ev.wd==='Quarta'?'20h':'19h'),date:nStart,slots:an}}
+if(nStart>now&&!ne){ne={nm:ev.wd+' - Noite \u2022 '+(ev.wd==='Quarta'?'20h':'19h'),date:nStart,slots:an,hora:ev.wd==='Quarta'?'20h':'19h'}}
 }
 if(ne)break;
 }
@@ -733,7 +734,7 @@ var ph='';ne.slots.forEach(function(s){var vol=Z[s.p]||{};
 ph+='<div class="npe">'+(vol.i?'<img src="'+vol.i+'">':'')+'<div><div class="npn">'+s.p+'</div><div class="npr">'+s.r+'</div></div></div>';
 });document.getElementById('nP').innerHTML=ph;
 var wh='';ne.slots.forEach(function(s,idx){var vol=Z[s.p]||{};
-var msg='Oi '+s.p+'!\n\nVoc\u00ea est\u00e1 '+(vol.g==='m'?'escalada':'escalado')+' para o pr\u00f3ximo culto:\n\n'+ne.nm+'\n'+ds+'\nFun\u00e7\u00e3o: '+s.r+'\n\nConfira a escala completa em:\n'+URL+'\n\nQualquer impedimento, avise com anteced\u00eancia!';
+var msg='Oi '+s.p+'!\n\nVoc\u00ea est\u00e1 '+(vol.g==='m'?'escalada':'escalado')+' para o pr\u00f3ximo culto:\n\n'+ne.nm+'\n'+ds+'\nHor\u00e1rio: '+ne.hora+'\nFun\u00e7\u00e3o: '+s.r+'\n\nConfira a escala completa em:\n'+URL+'\n\nQualquer impedimento, avise com anteced\u00eancia!';
 var u='https://wa.me/'+(vol.p||'')+'?text='+encodeURIComponent(msg);
 var sc=wColor(idx);
 wh+='<a class="wab" href="'+u+'" target="_blank" style="'+sc+'">'+W+'<div class="wl"><small>'+s.r+'</small>Avisar '+s.p+'</div></a>';
