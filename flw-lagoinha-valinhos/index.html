@@ -42,7 +42,6 @@ html{scroll-behavior:smooth}
 .app-brand{display:flex;align-items:center;gap:6px;font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--t1);text-decoration:none;padding:8px 16px;border:1px solid rgba(108,92,231,.4);border-radius:100px;background:linear-gradient(135deg,rgba(108,92,231,.15),rgba(0,206,201,.15));transition:padding .5s ease,gap .5s ease,border-radius .5s ease,width .5s ease,box-shadow .3s ease,color .3s ease,border-color .3s ease,background .3s ease;letter-spacing:.3px;text-transform:uppercase;white-space:nowrap;overflow:hidden;box-shadow:0 0 20px rgba(108,92,231,.15),0 0 40px rgba(108,92,231,.05);position:relative;animation:abpulse 2.5s ease-in-out infinite}
 @keyframes abpulse{0%,100%{box-shadow:0 0 20px rgba(108,92,231,.2),0 0 40px rgba(0,206,201,.05)}50%{box-shadow:0 0 28px rgba(108,92,231,.5),0 0 56px rgba(0,206,201,.2)}}
 .app-brand:hover{color:#fff;border-color:transparent;box-shadow:0 0 30px rgba(108,92,231,.4),0 0 60px rgba(0,206,201,.2);transform:translateY(-1px)}
-.app-brand:hover img{filter:brightness(0) invert(1)}
 .app-brand::before{content:'';position:absolute;inset:-1px;border-radius:100px;background:var(--gm);opacity:0;transition:opacity .3s;z-index:0}
 .app-brand:hover::before{opacity:1}
 .app-brand img{width:16px;height:16px;border-radius:4px;transition:all .6s ease;flex-shrink:0;position:relative;z-index:1}
