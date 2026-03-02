@@ -800,7 +800,7 @@ ytEl.style.display='none';ytEl.innerHTML='';
 if(!ne){document.getElementById('neN').textContent='Nenhum culto pendente';document.getElementById('neD').textContent='Escala do m\u00eas conclu\u00edda';document.getElementById('cdT').style.display='none';document.getElementById('waA').innerHTML='';document.getElementById('nP').innerHTML='';return}
 document.getElementById('cdT').style.display='';
 document.getElementById('neN').textContent=ne.nm;
-var ds=ne.date.toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'long',hour:'2-digit',minute:'2-digit'});
+var ds=ne.date.toLocaleDateString('pt-BR',{day:'numeric',month:'long',year:'numeric'});
 document.getElementById('neD').textContent=ds;
 var ph='';ne.slots.forEach(function(s){var vol=Z[s.p]||{};
 var _tc={'slide':'108,92,231','ilum':'0,206,201','som':'248,183,57','foto':'255,107,157','open':'0,184,148','consol':'214,48,49'};var _rgb=_tc[s.t]||'108,92,231';ph+='<div class="npe" data-rgb="'+_rgb+'" onclick="ovm(\''+s.p.replace(/'/g,"\\'")+'\')">'+(vol.i?'<img src="'+vol.i+'">':'')+'<div><div class="npn">'+s.p+'</div><div class="npr">'+s.r+'</div></div><div class="npe-dot" style="background:'+getTypeColor(s.t)+'"></div></div>';
