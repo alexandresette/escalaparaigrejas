@@ -481,7 +481,6 @@ function gd(){return SD[ck]}
 function pm(){if(mi>0){mi--;ck=AM[mi];updateHash();ra()}}
 function nm(){if(mi<AM.length-1){mi++;ck=AM[mi];updateHash();ra()}}
 window.addEventListener('hashchange',function(){loadFromHash();ra()});
-loadFromHash();
 // Deterministic daily random using date seed
 function dayIdx(arr){var d=new Date();var seed=d.getFullYear()*10000+d.getMonth()*100+d.getDate();var x=Math.sin(seed)*10000;return arr[Math.abs(Math.floor(x))%arr.length]}
 function dateIdx(arr,dateStr){var d=new Date(dateStr+'T12:00:00');var seed=d.getFullYear()*10000+(d.getMonth()+1)*100+d.getDate();var x=Math.sin(seed*72)*10000;return arr[Math.abs(Math.floor(x))%arr.length]}
@@ -895,7 +894,7 @@ h+='</div>';
 document.getElementById('calView').innerHTML=h;
 }
 function ra(){var data=gd();if(!data)return;updateHash();rv(data);buildFilters(data);rsc(data);rsts(data);ucd(data);if(curView==='cal')renderCal(data)}
-ra();
+loadFromHash();ra();
 window.addEventListener('resize',function(){ra()});
 var tb=document.querySelector('.tb');
 var scrollThreshold=50;
