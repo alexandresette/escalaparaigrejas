@@ -473,9 +473,15 @@ events:[
 ],
 om:[]};
 var ck="2026-03",AM=["2026-03","2026-04"],mi=0;
+var HASH_MAP={"mar-2026":"2026-03","abr-2026":"2026-04","mai-2026":"2026-05","jun-2026":"2026-06","jul-2026":"2026-07","ago-2026":"2026-08","set-2026":"2026-09","out-2026":"2026-10","nov-2026":"2026-11","dez-2026":"2026-12","jan-2027":"2027-01","fev-2027":"2027-02"};
+var HASH_REV={};Object.keys(HASH_MAP).forEach(function(k){HASH_REV[HASH_MAP[k]]=k});
+function updateHash(){var h=HASH_REV[ck];if(h)history.replaceState(null,null,'#'+h)}
+function loadFromHash(){var h=location.hash.replace('#','');if(h&&HASH_MAP[h]&&SD[HASH_MAP[h]]){ck=HASH_MAP[h];mi=AM.indexOf(ck);if(mi<0)mi=0}}
 function gd(){return SD[ck]}
-function pm(){if(mi>0){mi--;ck=AM[mi];ra()}}
-function nm(){if(mi<AM.length-1){mi++;ck=AM[mi];ra()}}
+function pm(){if(mi>0){mi--;ck=AM[mi];updateHash();ra()}}
+function nm(){if(mi<AM.length-1){mi++;ck=AM[mi];updateHash();ra()}}
+window.addEventListener('hashchange',function(){loadFromHash();ra()});
+loadFromHash();
 // Deterministic daily random using date seed
 function dayIdx(arr){var d=new Date();var seed=d.getFullYear()*10000+d.getMonth()*100+d.getDate();var x=Math.sin(seed)*10000;return arr[Math.abs(Math.floor(x))%arr.length]}
 function dateIdx(arr,dateStr){var d=new Date(dateStr+'T12:00:00');var seed=d.getFullYear()*10000+(d.getMonth()+1)*100+d.getDate();var x=Math.sin(seed*72)*10000;return arr[Math.abs(Math.floor(x))%arr.length]}
@@ -888,7 +894,7 @@ for(var i=0;i<remaining;i++)h+='<div class="cal-day empty"></div>';
 h+='</div>';
 document.getElementById('calView').innerHTML=h;
 }
-function ra(){var data=gd();if(!data)return;rv(data);buildFilters(data);rsc(data);rsts(data);ucd(data);if(curView==='cal')renderCal(data)}
+function ra(){var data=gd();if(!data)return;updateHash();rv(data);buildFilters(data);rsc(data);rsts(data);ucd(data);if(curView==='cal')renderCal(data)}
 ra();
 window.addEventListener('resize',function(){ra()});
 var tb=document.querySelector('.tb');
