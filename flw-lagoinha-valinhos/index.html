@@ -436,7 +436,7 @@ var DEVOS=[
 {v:29,img:"https://images.unsplash.com/photo-1501854140801-50d01698950b?w=600&h=300&fit=crop",th:"Abril chegou ao fim. Olha para trás — Deus esteve em cada dia, mesmo nos que pareceram vazios. Ele que começou uma boa obra em você vai completar. Sua fidelidade não depende da Sua, mas a Dele garante a sua.",pr:"Pai, obrigado por cada dia deste mês. Por cada vez que estiveste presente sem que eu percebesse. Que o próximo mês seja vivido com mais consciência da Tua fidelidade. Amém."},
 {v:30,img:"https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=600&h=300&fit=crop",th:"Março chegou ao fim. Antes de virar a página, olha para trás com gratidão. Deus esteve em cada dia — nos que foram cheios e nos que pareceram vazios. O que Ele começou em você neste mês, Ele vai completar. Amanhã começa um novo capítulo.",pr:"Pai, obrigado por março. Por cada momento em que Tu estiveste presente, mesmo quando eu não percebi. Me ajuda a entrar em abril com fé renovada, pronto para o que Tu tens preparado. Amém."}
 ];
-var URL="escalaparaigrejas.com/flw-lagoinha-valinhos/#abr-2026";
+function getURL(){var h=HASH_REV&&HASH_REV[ck];return "escalaparaigrejas.com/flw-lagoinha-valinhos"+(h?"/#"+h:"")}
 var SD={"2026-03":{
 month:"Mar\u00e7o",year:2026,vi:0,
 events:[
@@ -658,7 +658,7 @@ document.getElementById('dMs').textContent=ds;
 var h='';
 function rp(label,slots,horario){if(!slots||!slots.length)return '';var r='<div class="mpl">'+label+'</div>';
 slots.forEach(function(s){var vol=Z[s.p]||{};var dc=getTypeColor(s.t);
-var wu='https://wa.me/'+(vol.p||'')+'?text='+encodeURIComponent('Gra\u00e7a e paz '+s.p+'!\n\nVoc\u00ea est\u00e1 '+(vol.g==='m'?'escalada':'escalado')+':\n\n'+ds+'\nHor\u00e1rio: '+horario+'\nFun\u00e7\u00e3o: '+s.r+'\n\nConfira a escala completa em:\n'+URL+'\n\nQualquer impedimento, avise com anteced\u00eancia!');
+var wu='https://wa.me/'+(vol.p||'')+'?text='+encodeURIComponent('Gra\u00e7a e paz '+s.p+'!\n\nVoc\u00ea est\u00e1 '+(vol.g==='m'?'escalada':'escalado')+':\n\n'+ds+'\nHor\u00e1rio: '+horario+'\nFun\u00e7\u00e3o: '+s.r+'\n\nConfira a escala completa em:\n'+getURL()+'\n\nQualquer impedimento, avise com anteced\u00eancia!');
 r+='<div class="mp"><div class="mpa">'+(vol.i?'<img src="'+vol.i+'">':'')+'</div><div style="flex:1"><div class="mpn">'+s.p+'</div><div class="mpr"><span class="mpd" style="background:'+dc+'"></span>'+s.r+'</div></div><div class="mwc"><a class="mpw" href="'+wu+'" target="_blank">'+W+'</a><div class="mwl">Enviar lembrete</div></div></div>'});
 return r;}
 var mLabel=ev.wd==='Domingo'?'Manh\u00e3 \u2022 10h':'Manh\u00e3';var nLabel=ev.wd==='Quarta'?'Noite \u2022 20h':'Noite \u2022 19h';
@@ -690,7 +690,7 @@ h+='<div class="mv"><div class="mt">'+pv.t+'</div><div class="mr">'+pv.r+'</div>
 if(vol.p){
 var waMsg='Gra\u00e7a e paz '+name+'!\n\nSua escala de '+data.month+' '+data.year+':\n\n';
 sched.forEach(function(s){waMsg+=s.ds+' | '+s.per+' | '+s.r+'\n'});
-waMsg+='\nConfira a escala completa em:\n'+URL;
+waMsg+='\nConfira a escala completa em:\n'+getURL();
 h+='<a class="vmwa" href="https://wa.me/'+vol.p+'?text='+encodeURIComponent(waMsg)+'" target="_blank">'+W+' Enviar escala</a>';}
 document.getElementById('vMc').innerHTML=h;
 document.getElementById('vM').classList.add('a');
@@ -841,7 +841,7 @@ var ph='';ne.slots.forEach(function(s){var vol=Z[s.p]||{};
 var _tc={'slide':'108,92,231','ilum':'0,206,201','som':'248,183,57','foto':'255,107,157','open':'0,184,148','consol':'214,48,49'};var _rgb=_tc[s.t]||'108,92,231';ph+='<div class="npe" data-rgb="'+_rgb+'" onclick="ovm(\''+s.p.replace(/'/g,"\\'")+'\')">'+(vol.i?'<img src="'+vol.i+'">':'')+'<div><div class="npn">'+s.p+'</div><div class="npr">'+s.r+'</div></div><div class="npe-dot" style="background:'+getTypeColor(s.t)+'"></div></div>';
 });document.getElementById('nP').innerHTML=ph;initNpeHover();
 var wh='';ne.slots.forEach(function(s,idx){var vol=Z[s.p]||{};
-var msg='Gra\u00e7a e paz '+s.p+'!\n\nVoc\u00ea est\u00e1 '+(vol.g==='m'?'escalada':'escalado')+':\n\n'+ne.nm+'\n'+ds+'\nFun\u00e7\u00e3o: '+s.r+'\n\nConfira a escala completa em:\n'+URL+'\n\nQualquer impedimento, avise com anteced\u00eancia!';
+var msg='Gra\u00e7a e paz '+s.p+'!\n\nVoc\u00ea est\u00e1 '+(vol.g==='m'?'escalada':'escalado')+':\n\n'+ne.nm+'\n'+ds+'\nFun\u00e7\u00e3o: '+s.r+'\n\nConfira a escala completa em:\n'+getURL()+'\n\nQualquer impedimento, avise com anteced\u00eancia!';
 var u='https://wa.me/'+(vol.p||'')+'?text='+encodeURIComponent(msg);
 var tc={'slide':'108,92,231','ilum':'0,206,201','som':'248,183,57','foto':'162,155,254','open':'0,184,148','consol':'214,48,49'};
 var rgb=tc[s.t]||'108,92,231';
