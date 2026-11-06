@@ -603,7 +603,7 @@ if(rView==='min'){
 // Ministry view
 var minLdr={'Open':'J\u00fanior'};
 var catMap={'Slide/Luz/Live':'cat-slide','Som':'cat-som','Foto/V\u00eddeo':'cat-foto','Consolida\u00e7\u00e3o':'cat-consol','Open':'cat-open'};
-['Slide/Luz/Live'].forEach(function(catName){
+['Slide/Luz/Live','Som','Foto/V\u00eddeo','Consolida\u00e7\u00e3o','Open'].forEach(function(catName){
 var cls=catMap[catName]||'';
 var items=catCounts[catName]||{};
 if(catName==='Slide/Luz/Live'||catName==='Som'||catName==='Foto/V\u00eddeo'){
