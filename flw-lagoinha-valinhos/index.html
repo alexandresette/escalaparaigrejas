@@ -591,7 +591,7 @@ function filterSlots(slots){if(!slots)return[];return slots.filter(matchFilter)}
 function rsts(data){
 var catCounts=getCountsByCat(data);
 var totalCounts=getCounts(data);
-Object.keys(Z).forEach(function(n){if(!(n in totalCounts))totalCounts[n]=0});
+Object.keys(Z).forEach(function(n){if(!(n in totalCounts)&&Z[n].ldr)totalCounts[n]=0});
 // Add om counts to catCounts
 if(data.om)data.om.forEach(function(x){
 var cat=x.m;if(!catCounts[cat])catCounts[cat]={};
@@ -607,7 +607,7 @@ var catMap={'Slide/Luz/Live':'cat-slide','Som':'cat-som','Foto/V\u00eddeo':'cat-
 var cls=catMap[catName]||'';
 var items=catCounts[catName]||{};
 if(catName==='Slide/Luz/Live'||catName==='Som'||catName==='Foto/V\u00eddeo'){
-Object.keys(Z).forEach(function(n){if(Z[n].c===catName&&!(n in items))items[n]=0});
+Object.keys(Z).forEach(function(n){if(Z[n].c===catName&&!(n in items)&&Z[n].ldr)items[n]=0});
 }
 var sorted=Object.entries(items).sort(function(a,b){
 var aLdr=(Z[a[0]]&&Z[a[0]].ldr&&Z[a[0]].c===catName)||(minLdr[catName]===a[0])?1:0;
