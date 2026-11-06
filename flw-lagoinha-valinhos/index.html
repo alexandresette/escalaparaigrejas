@@ -132,7 +132,8 @@ html{scroll-behavior:smooth}
 .sc.em{display:flex;align-items:center;justify-content:center;color:var(--t3);font-size:12px;font-style:italic}
 .se{display:flex;align-items:center;gap:6px;font-size:12px}
 .ri{width:3px;height:18px;border-radius:3px;flex-shrink:0}
-.ri.slide{background:var(--a1)}.ri.ilum{background:var(--a2)}.ri.som{background:#f8b739}.ri.foto{background:#ff6b9d}.ri.open{background:#00b894}.ri.consol{background:#d63031}
+.ri.slide{background:var(--a1)}.ri.ilum{background:var(--a2)}
+.ri.live{background:#0984e3}.ri.som{background:#f8b739}.ri.foto{background:#ff6b9d}.ri.open{background:#00b894}.ri.consol{background:#d63031}
 .rt{font-size:9px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--t3);min-width:55px}
 .pn{font-weight:600;text-transform:uppercase;font-size:11px;letter-spacing:.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
 .lg{margin-top:24px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
@@ -480,13 +481,13 @@ om:[]};
 SD["2026-11"]={
 month:"Novembro",year:2026,vi:0,
 events:[
-{date:"2026-11-08",wd:"Domingo",s:{m:[{r:"Slide",p:"Natália",t:"slide"},{r:"Ilum./Live",p:"Alexandre",t:"ilum"}],n:[{r:"Slide",p:"Aaron",t:"slide"},{r:"Ilum./Live",p:"Ale",t:"ilum"}],fm:null,fn:null}},
-{date:"2026-11-11",wd:"Quarta",s:{m:null,n:[{r:"Slide",p:"Wally",t:"slide"},{r:"Ilum./Live",p:"Rafa",t:"ilum"}],fm:null,fn:null}},
-{date:"2026-11-15",wd:"Domingo",s:{m:[{r:"Slide",p:"Ale",t:"slide"},{r:"Ilum./Live",p:"Everton",t:"ilum"}],n:[{r:"Slide",p:"Alexandre",t:"slide"},{r:"Ilum./Live",p:"Gian",t:"ilum"}],fm:null,fn:null}},
-{date:"2026-11-18",wd:"Quarta",s:{m:null,n:[{r:"Slide",p:"Julian",t:"slide"},{r:"Ilum./Live",p:"Wally",t:"ilum"}],fm:null,fn:null}},
-{date:"2026-11-22",wd:"Domingo",s:{m:[{r:"Slide",p:"Rafa",t:"slide"},{r:"Ilum./Live",p:"Alexandre",t:"ilum"}],n:[{r:"Slide",p:"Everton",t:"slide"},{r:"Ilum./Live",p:"Natália",t:"ilum"}],fm:null,fn:null}},
-{date:"2026-11-25",wd:"Quarta",s:{m:null,n:[{r:"Slide",p:"Aaron",t:"slide"},{r:"Ilum./Live",p:"Julian",t:"ilum"}],fm:null,fn:null}},
-{date:"2026-11-29",wd:"Domingo",s:{m:[{r:"Slide",p:"Julian",t:"slide"},{r:"Ilum./Live",p:"Ale",t:"ilum"}],n:[{r:"Slide",p:"Gian",t:"slide"},{r:"Ilum./Live",p:"Everton",t:"ilum"}],fm:null,fn:null}}
+{date:"2026-11-08",wd:"Domingo",s:{m:[{r:"Slide",p:"Gian",t:"slide"},{r:"Iluminação",p:"Everton",t:"ilum"}],n:[{r:"Slide",p:"Ale",t:"slide"},{r:"Iluminação",p:"Julian",t:"ilum"},{r:"Live",p:"Natália",t:"live"}],fm:null,fn:null}},
+{date:"2026-11-11",wd:"Quarta",s:{m:null,n:[{r:"Slide",p:"Aaron",t:"slide"},{r:"Iluminação",p:"Alexandre",t:"ilum"},{r:"Live",p:"Rafa",t:"live"}],fm:null,fn:null}},
+{date:"2026-11-15",wd:"Domingo",s:{m:[{r:"Slide",p:"Alexandre",t:"slide"},{r:"Iluminação",p:"Ale",t:"ilum"}],n:[{r:"Slide",p:"Wally",t:"slide"},{r:"Iluminação",p:"Gian",t:"ilum"},{r:"Live",p:"Everton",t:"live"}],fm:null,fn:null}},
+{date:"2026-11-18",wd:"Quarta",s:{m:null,n:[{r:"Slide",p:"Julian",t:"slide"},{r:"Iluminação",p:"Alexandre",t:"ilum"},{r:"Live",p:"Aaron",t:"live"}],fm:null,fn:null}},
+{date:"2026-11-22",wd:"Domingo",s:{m:[{r:"Slide",p:"Rafa",t:"slide"},{r:"Iluminação",p:"Natália",t:"ilum"}],n:[{r:"Slide",p:"Everton",t:"slide"},{r:"Iluminação",p:"Wally",t:"ilum"},{r:"Live",p:"Gian",t:"live"}],fm:null,fn:null}},
+{date:"2026-11-25",wd:"Quarta",s:{m:null,n:[{r:"Slide",p:"Alexandre",t:"slide"},{r:"Iluminação",p:"Aaron",t:"ilum"},{r:"Live",p:"Julian",t:"live"}],fm:null,fn:null}},
+{date:"2026-11-29",wd:"Domingo",s:{m:[{r:"Slide",p:"Natália",t:"slide"},{r:"Iluminação",p:"Ale",t:"ilum"}],n:[{r:"Slide",p:"Wally",t:"slide"},{r:"Iluminação",p:"Julian",t:"ilum"},{r:"Live",p:"Everton",t:"live"}],fm:null,fn:null}}
 ],
 om:[]};
 var ck="2026-11",AM=["2026-10","2026-11"],mi=1;
@@ -582,7 +583,7 @@ if(fCat==='Som')return s.t==='som';
 if(fCat.indexOf('Foto')>=0)return s.t==='foto';
 if(fCat==='Open')return s.t==='open';
 if(fCat.indexOf('Consolida')>=0)return s.t==='consol';
-return s.t==='slide'||s.t==='ilum';
+return s.t==='slide'||s.t==='ilum'||s.t==='live';
 }
 function filterSlots(slots){if(!slots)return[];return slots.filter(matchFilter)}
 function rsts(data){
@@ -648,7 +649,7 @@ document.getElementById('rvMin').classList.toggle('active',v==='min');
 document.getElementById('rvVol').classList.toggle('active',v==='vol');
 ra();
 }
-function getTypeColor(t){return t==='slide'?'var(--a1)':t==='som'?'#f8b739':t==='foto'?'#ff6b9d':t==='open'?'#00b894':t==='consol'?'#d63031':'var(--a2)'}
+function getTypeColor(t){return t==='slide'?'var(--a1)':t==='som'?'#f8b739':t==='foto'?'#ff6b9d':t==='open'?'#00b894':t==='consol'?'#d63031':t==='live'?'#0984e3':'var(--a2)'}
 function initNpeHover(){document.querySelectorAll('.npe[data-rgb]').forEach(function(el){var rgb=el.getAttribute('data-rgb');el.addEventListener('mouseenter',function(){el.style.transform='translateY(-2px)';el.style.borderColor='rgba('+rgb+',.4)';el.style.boxShadow='0 4px 16px rgba('+rgb+',.2)';el.style.background='rgba('+rgb+',.08)'});el.addEventListener('mouseleave',function(){el.style.transform='';el.style.borderColor='';el.style.boxShadow='';el.style.background=''})})}
 function odm(i){
 var data=gd();var ev=data.events[i];if(!ev)return;
